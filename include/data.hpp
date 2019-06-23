@@ -82,7 +82,7 @@ template <typename T> class dataStor
 		dataStor<T> replicate( )
 		{
 			dataStor<T> newDataStor;
-			for( size_t i = 0U; i < m_data.size( ) - 1U; i++ )
+			for( size_t i = 0U; i < m_data.size( ); i++ )
 			{
 				newDataStor.add( m_data[ i ] );
 			}

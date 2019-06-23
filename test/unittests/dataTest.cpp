@@ -77,3 +77,20 @@ TEST( DataTest, Randomize )
 
 	EXPECT_EQ( false, storage.isSorted( ) );
 }
+
+TEST( DataTest, Replicate )
+{
+	dataStor<int> storage = dataStor<int>( );
+
+	storage.add( 1 );
+	storage.add( 2 );
+	storage.add( 3 );
+
+	storage.randomize( );
+
+	dataStor<int> storage2 = storage.replicate( );
+
+	EXPECT_EQ( storage[ 0 ], storage2[ 0 ] );
+	EXPECT_EQ( storage[ 1 ], storage2[ 1 ] );
+	EXPECT_EQ( storage[ 2 ], storage2[ 2 ] );
+}
