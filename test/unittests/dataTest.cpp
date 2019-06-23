@@ -4,7 +4,7 @@
 
 TEST( DataTest, Constructor )
 {
-	DataStorage<int> storage = DataStorage<int>( );
+	dataStor<int> storage = dataStor<int>( );
 
 	EXPECT_EQ( 0, storage.getSwapCount( ) );
 	EXPECT_EQ( 0, storage.getAccessCount( ) );
@@ -12,11 +12,11 @@ TEST( DataTest, Constructor )
 
 TEST( DataTest, Access )
 {
-	DataStorage<int> storage = DataStorage<int>( );
+	dataStor<int> storage = dataStor<int>( );
 
-	storage.Add( 1 );
-	storage.Add( 2 );
-	storage.Add( 3 );
+	storage.add( 1 );
+	storage.add( 2 );
+	storage.add( 3 );
 
 	EXPECT_EQ( 1, storage[ 0 ] );
 	EXPECT_EQ( 2, storage[ 1 ] );
@@ -25,36 +25,55 @@ TEST( DataTest, Access )
 	EXPECT_EQ( 0, storage.getSwapCount( ) );
 }
 
-TEST( DataTest, Swap )
+TEST( DataTest, swap )
 {
-	DataStorage<int> storage = DataStorage<int>( );
+	dataStor<int> storage = dataStor<int>( );
 
-	storage.Add( 1 );
-	storage.Add( 2 );
-	storage.Add( 3 );
+	storage.add( 1 );
+	storage.add( 2 );
+	storage.add( 3 );
 
-	storage.Swap( 0, 2 );
-	storage.Swap( 0, 1 );	
+	storage.swap( 0, 2 );
+	storage.swap( 0, 1 );	
 
 	EXPECT_EQ( 2, storage[ 0 ] );
 	EXPECT_EQ( 3, storage[ 1 ] );
 	EXPECT_EQ( 1, storage[ 2 ] );
 	EXPECT_EQ( 3, storage.getAccessCount( ) );
 	EXPECT_EQ( 2, storage.getSwapCount( ) );
-	EXPECT_EQ( 3, storage.getAccessCount( ) );	
+
+	storage.clear( );
+
+	EXPECT_EQ( 0, storage.getAccessCount( ) );
+	EXPECT_EQ( 0, storage.getSwapCount( ) );
 }
 
 TEST( DataTest, Sorted )
 {
-	DataStorage<int> storage = DataStorage<int>( );
+	dataStor<int> storage = dataStor<int>( );
 
-	storage.Add( 1 );
-	storage.Add( 2 );
-	storage.Add( 3 );
+	storage.add( 1 );
+	storage.add( 2 );
+	storage.add( 3 );
 
 	EXPECT_EQ( true, storage.isSorted( ) );
 
-	storage.Swap( 0, 2 );
+	storage.swap( 0, 2 );
+
+	EXPECT_EQ( false, storage.isSorted( ) );
+}
+
+TEST( DataTest, Randomize )
+{
+	dataStor<int> storage = dataStor<int>( );
+
+	storage.add( 1 );
+	storage.add( 2 );
+	storage.add( 3 );
+
+	EXPECT_EQ( true, storage.isSorted( ) );
+
+	storage.randomize( );
 
 	EXPECT_EQ( false, storage.isSorted( ) );
 }

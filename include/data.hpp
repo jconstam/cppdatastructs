@@ -1,14 +1,16 @@
 #include <vector>
+#include <ctime>
+#include <cstdlib>
 
-template <typename T> class DataStorage
+template <typename T> class dataStor
 {
 	public:
-		DataStorage( )
+		dataStor( )
 		{
-			Clear( );
+			clear( );
 		}
 
-		void Clear( )
+		void clear( )
 		{
 			m_data.clear( );
 
@@ -16,12 +18,12 @@ template <typename T> class DataStorage
 			m_accessCount = 0;
 		}
 
-		void Add( const T value )
+		void add( const T value )
 		{
 			m_data.push_back( value );
 		}
 
-		void Swap( const int index1, const int index2 )
+		void swap( const int index1, const int index2 )
 		{
 			T temp = m_data[ index1 ];
 			m_data[ index1 ] = m_data[ index2 ];
@@ -58,6 +60,23 @@ template <typename T> class DataStorage
 			}
 
 			return true;
+		}
+
+		void randomize( )
+		{
+			std::vector<T> newData;
+
+			srand( time( 0 ) );
+
+			while( m_data.size( ) > 0 )
+			{
+				int index = ( rand( ) % m_data.size( ) );
+
+				newData.push_back( m_data[ index ] );
+				m_data.erase( m_data.begin( ) + index );
+			}
+
+			m_data = std::vector<T>( newData );
 		}
 	private:
 		std::vector<T> m_data;
