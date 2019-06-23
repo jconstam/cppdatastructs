@@ -78,6 +78,17 @@ template <typename T> class dataStor
 
 			m_data = std::vector<T>( newData );
 		}
+
+		dataStor<T> replicate( )
+		{
+			dataStor<T> newDataStor;
+			for( size_t i = 0U; i < m_data.size( ) - 1U; i++ )
+			{
+				newDataStor.add( m_data[ i ] );
+			}
+
+			return newDataStor;
+		}
 	private:
 		std::vector<T> m_data;
 
