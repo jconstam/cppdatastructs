@@ -73,9 +73,17 @@ TEST( DataTest, Randomize )
 
 	EXPECT_EQ( true, storage.isSorted( ) );
 
-	storage.randomize( );
-
-	EXPECT_EQ( false, storage.isSorted( ) );
+	for( int i = 0; i < 100; i++ )
+	{
+		if( storage.isSorted( ) )
+		{
+			storage.randomize( );
+		}
+		else
+		{
+			EXPECT_EQ( false, storage.isSorted( ) );
+		}
+	}
 }
 
 TEST( DataTest, Replicate )
@@ -93,4 +101,17 @@ TEST( DataTest, Replicate )
 	EXPECT_EQ( storage[ 0 ], storage2[ 0 ] );
 	EXPECT_EQ( storage[ 1 ], storage2[ 1 ] );
 	EXPECT_EQ( storage[ 2 ], storage2[ 2 ] );
+}
+
+TEST( DataTest, Generate )
+{
+	dataStor<int> storage = dataStor<int>( );
+
+	storage.generate( 10, -5, 5 );
+
+	for( int i = 0; i < 10; i++ )
+	{
+		EXPECT_GE( 5, storage[ i ] );
+		EXPECT_LE( -5, storage[ i ] );
+	}
 }

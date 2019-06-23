@@ -89,6 +89,17 @@ template <typename T> class dataStor
 
 			return newDataStor;
 		}
+
+		void generate( int count, int minValue, int maxValue )
+		{
+			clear( );
+			srand( time( 0 ) );
+
+			for( int i = 0; i < count; i++ )
+			{
+				add( rand() % ( maxValue - minValue  + 1 ) + minValue );
+			}
+		}
 	private:
 		std::vector<T> m_data;
 
