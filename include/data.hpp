@@ -46,6 +46,19 @@ template <typename T> class DataStorage
 		{
 			return m_accessCount;
 		}
+
+		bool isSorted( )
+		{
+			for( size_t i = 0U; i < m_data.size( ) - 1U; i++ )
+			{
+				if( m_data[ i ] > m_data[ i + 1U ] )
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
 	private:
 		std::vector<T> m_data;
 

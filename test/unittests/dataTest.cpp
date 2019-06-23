@@ -43,3 +43,18 @@ TEST( DataTest, Swap )
 	EXPECT_EQ( 2, storage.getSwapCount( ) );
 	EXPECT_EQ( 3, storage.getAccessCount( ) );	
 }
+
+TEST( DataTest, Sorted )
+{
+	DataStorage<int> storage = DataStorage<int>( );
+
+	storage.Add( 1 );
+	storage.Add( 2 );
+	storage.Add( 3 );
+
+	EXPECT_EQ( true, storage.isSorted( ) );
+
+	storage.Swap( 0, 2 );
+
+	EXPECT_EQ( false, storage.isSorted( ) );
+}
