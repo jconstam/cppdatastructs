@@ -17,6 +17,7 @@ add_subdirectory( ${CMAKE_CURRENT_BINARY_DIR}/googletest-src ${CMAKE_CURRENT_BIN
 
 set( UNITTEST_SOURCES
     ${UNITTEST_ROOT}/dataTest.cpp
+    ${UNITTEST_ROOT}/sort_insertionTest.cpp
 )
 
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage -fno-exceptions -fno-inline -g -O0" )

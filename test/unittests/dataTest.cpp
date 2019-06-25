@@ -48,6 +48,46 @@ TEST( DataTest, swap )
 	EXPECT_EQ( 0, storage.getSwapCount( ) );
 }
 
+TEST( DataTest, Remove )
+{
+	dataStor<int> storage = dataStor<int>( );
+
+	storage.add( 1 );
+	storage.add( 2 );
+	storage.add( 3 );
+	storage.add( 4 );
+	storage.add( 5 );
+
+	EXPECT_EQ( 1, storage[ 0 ] );
+	EXPECT_EQ( 2, storage[ 1 ] );
+	EXPECT_EQ( 3, storage[ 2 ] );
+	EXPECT_EQ( 4, storage[ 3 ] );
+	EXPECT_EQ( 5, storage[ 4 ] );
+
+	storage.remove( 2 );
+	storage.remove( 1 );
+
+	EXPECT_EQ( 1, storage[ 0 ] );
+	EXPECT_EQ( 4, storage[ 1 ] );
+	EXPECT_EQ( 5, storage[ 2 ] );
+}
+
+TEST( DataTest, Insert )
+{
+	dataStor<int> storage = dataStor<int>( );
+
+	storage.add( 1 );
+	storage.add( 2 );
+	storage.add( 3 );
+
+	storage.insert( 4, 1 );
+
+	EXPECT_EQ( 1, storage[ 0 ] );
+	EXPECT_EQ( 4, storage[ 1 ] );
+	EXPECT_EQ( 2, storage[ 2 ] );
+	EXPECT_EQ( 3, storage[ 3 ] );
+}
+
 TEST( DataTest, Sorted )
 {
 	dataStor<int> storage = dataStor<int>( );

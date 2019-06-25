@@ -8,7 +8,7 @@ set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror" )
 project( ${PROJECT_NAME_LIBRARY} ) 
 
 set( SOURCES 
-	temp.cpp
+	${PROJECT_SOURCE_DIR}/temp.cpp
 )
 
 include_directories( ${PROJECT_NAME_LIBRARY} ${PROJECT_SOURCE_DIR}/../include )

@@ -1,8 +1,12 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
+#include <iostream>
 
-template <typename T> class dataStor
+using namespace std;
+
+template <typename T>
+class dataStor
 {
 	public:
 		dataStor( )
@@ -16,6 +20,13 @@ template <typename T> class dataStor
 
 			m_swapCount = 0;
 			m_accessCount = 0;
+			m_insertCount = 0;
+			m_removeCount = 0;
+		}
+
+		size_t size( )
+		{
+			return m_data.size( );
 		}
 
 		void add( const T value )
@@ -30,6 +41,24 @@ template <typename T> class dataStor
 			m_data[ index2 ] = temp;
 
 			m_swapCount++;
+		}
+
+		T remove( const int index )
+		{
+			T value = m_data[ index ];
+
+			m_data.erase( m_data.begin( ) + index );
+
+			m_removeCount++;
+
+			return value;
+		}
+
+		void insert( const T value, const int index )
+		{
+			m_data.insert( m_data.begin( ) + index, value );
+
+			m_insertCount++;
 		}
 
 		T& operator[]( const int index )
@@ -105,4 +134,6 @@ template <typename T> class dataStor
 
 		int m_swapCount;
 		int m_accessCount;
+		int m_insertCount;
+		int m_removeCount;
 };
