@@ -9,6 +9,11 @@ class sortBase
 			m_data = data.replicate( );
 		}
 
+		void outputGif( )
+		{
+			m_data.outputGif( );
+		}
+
 		virtual void doSort( ) = 0;
 
 	protected:

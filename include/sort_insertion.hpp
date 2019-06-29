@@ -1,4 +1,8 @@
+#include <iostream>
+
 #include "sort.hpp"
+
+using namespace std;
 
 template <typename T>
 class sort_insertion : public sortBase<T>
