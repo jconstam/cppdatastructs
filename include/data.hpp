@@ -3,9 +3,9 @@
 
 #include <vector>
 #include <ctime>
-#include <climits>
 #include <cstdlib>
 #include <iostream>
+#include <algorithm>
 
 #include <unistd.h>
 
@@ -48,7 +48,7 @@ class dataStor
 			m_data[ index1 ] = m_data[ index2 ];
 			m_data[ index2 ] = temp;
 
-			addGifFrame( );
+			addGifFrame( { index1, index2 } );
 
 			m_swapCount++;
 		}
@@ -68,7 +68,7 @@ class dataStor
 		{
 			m_data.insert( m_data.begin( ) + index, value );
 
-			addGifFrame( index );
+			addGifFrame( { index } );
 
 			m_insertCount++;
 		}
@@ -183,28 +183,39 @@ class dataStor
 			m_gif = ge_new_gif( "test.gif", m_gif_count, m_gif_maxValue, palette, depth, 0 );
 		}
 
-	    void addGifFrame( int markedValue = INT_MAX )
+	    void addGifFrame( std::vector<int> markedValues = {} )
 	    {
+			for( int i = 0; i < m_gif_count * m_gif_maxValue; i++ )
+			{
+				m_gif->frame[ i ] = 1;
+			}
+
 			for( int i = 0; i < m_gif_count; i++ )
 			{
-				for( int j = 0; j < m_data[ i ]; j++ )
+				bool isMarked = false;
+				for( auto &v : markedValues )
 				{
-					m_gif->frame[ j * m_gif_count + i ] = 1;
-				}
-				for( int j = m_data[ i ]; j < m_gif_maxValue; j++ )
-				{
-					if( j == markedValue )
+					if( v == i )
 					{
-						m_gif->frame[ j * m_gif_count + i ] = 2;
+						isMarked = true;
+						break;
+					}
+				}
+
+				for( int j = 0; j <= m_data[ i ]; j++ )
+				{
+					if( isMarked )
+					{
+						m_gif->frame[ ( m_gif_maxValue - j ) * m_gif_count + i ] = 2;
 					}
 					else
 					{
-						m_gif->frame[ j * m_gif_count + i ] = 0;
+						m_gif->frame[ ( m_gif_maxValue - j ) * m_gif_count + i ] = 0;
 					}
 				}
 			}
 
-			ge_add_frame( m_gif, 1 );
+			ge_add_frame( m_gif, 0 );
 	    }
 };
 
