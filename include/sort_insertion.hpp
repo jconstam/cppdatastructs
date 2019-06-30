@@ -1,8 +1,7 @@
-#include <iostream>
+#ifndef SORT_INSERTION_HPP__
+#define SORT_INSERTION_HPP__
 
 #include "sort.hpp"
-
-using namespace std;
 
 template <typename T>
 class sort_insertion : public sortBase<T>
@@ -35,3 +34,5 @@ class sort_insertion : public sortBase<T>
 			}
 		}
 };
+
+#endif

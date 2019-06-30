@@ -1,5 +1,5 @@
-#ifndef DATA_H__
-#define DATA_H__
+#ifndef DATA_HPP__
+#define DATA_HPP__
 
 #include <vector>
 #include <ctime>

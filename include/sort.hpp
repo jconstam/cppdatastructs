@@ -1,3 +1,6 @@
+#ifndef SORT_HPP__
+#define SORT_HPP__
+
 #include "data.hpp"
 
 template <typename T>
@@ -19,8 +22,17 @@ class sortBase
 			m_data.initGif( fileName );
 		}
 
+		void doSortWithGif( std::string fileName )
+		{
+			initGif( fileName );
+			doSort( );
+			outputGif( );
+		}
+
 		virtual void doSort( ) = 0;
 
 	protected:
 		dataStor<T> m_data;
 };
+
+#endif
