@@ -1,6 +1,8 @@
 #ifndef SORT_HPP__
 #define SORT_HPP__
 
+#include <iostream>
+
 #include "data.hpp"
 
 template <typename T>
@@ -9,7 +11,12 @@ class sortBase
 	public:
 		sortBase( dataStor<T> data )
 		{
-			m_data = data;
+			m_data = data.replicate( );
+		}
+
+		bool isSorted( )
+		{
+			return m_data.isSorted( );
 		}
 
 		void outputGif( )
@@ -29,7 +36,10 @@ class sortBase
 			outputGif( );
 		}
 
-		virtual void doSort( ) = 0;
+		virtual void doSort( )
+		{
+			return;
+		}
 
 	protected:
 		dataStor<T> m_data;

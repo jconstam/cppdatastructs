@@ -32,6 +32,8 @@ class dataStor
 			m_removeCount = 0;
 
 			m_maxValue = 0;
+
+			m_gif = nullptr;
 		}
 
 		size_t size( )
@@ -124,7 +126,7 @@ class dataStor
 
 		dataStor<T> replicate( )
 		{
-			dataStor<T> newDataStor;
+			dataStor<T> newDataStor( m_maxValue );
 			for( size_t i = 0U; i < m_data.size( ); i++ )
 			{
 				newDataStor.add( m_data[ i ] );
@@ -167,6 +169,11 @@ class dataStor
 			ge_close_gif( m_gif );
 		}
 	private:
+		dataStor( int maxValue ) : dataStor( )
+		{
+			m_maxValue = maxValue;
+		}
+
 		std::vector<T> m_data;
 
 		int m_swapCount;
@@ -177,9 +184,21 @@ class dataStor
 		ge_GIF* m_gif;
 		size_t m_maxValue;
 
+		static const int m_speedUpFactor = 10;
+
 	    void addGifFrame( std::vector<int> markedValues = {} )
 	    {
+	    	static int speedUpCount = 0;
+
 	    	if( m_data.size( ) * m_maxValue == 0U )
+	    	{
+	    		return;
+	    	}
+
+	    	speedUpCount++;
+	    	speedUpCount %= m_speedUpFactor;
+
+	    	if( speedUpCount != 0 )
 	    	{
 	    		return;
 	    	}

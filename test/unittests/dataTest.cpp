@@ -147,11 +147,10 @@ TEST( DataTest, Generate )
 {
 	dataStor<int> storage = dataStor<int>( );
 
-	storage.generate( 10, -5, 5 );
+	storage.generate( 10, 5 );
 
 	for( int i = 0; i < 10; i++ )
 	{
 		EXPECT_GE( 5, storage[ i ] );
-		EXPECT_LE( -5, storage[ i ] );
 	}
 }

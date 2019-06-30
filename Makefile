@@ -1,19 +1,24 @@
 TRAVIS_BUILD_NUMBER ?= 0
 
 ROOT_PATH=$(shell pwd)
+PROJ_NAME=cppdatastructs
 
 SOURCE_PATH=${ROOT_PATH}/src
 INCLUDE_PATH=${ROOT_PATH}/include
 TEST_PATH=${ROOT_PATH}/test
 
 BUILD_PATH=${ROOT_PATH}/build
-OUTPUT_PATH=${BUILD_PATH}/cppdatastructs
+OUTPUT_PATH=${BUILD_PATH}/${PROJ_NAME}
 OUTPUT_TEST_PATH=${OUTPUT_PATH}/test
 
 .PHONY: build
 build:
 	mkdir -p ${OUTPUT_PATH}
 	cd ${OUTPUT_PATH} && cmake ${SOURCE_PATH} && $(MAKE) $(MAKEFLAGS)
+
+.PHONY: run
+run: build
+	${OUTPUT_PATH}/${PROJ_NAME}
 
 .PHONY: test
 test: build_tests
