@@ -30,6 +30,8 @@ class dataStor
 			m_accessCount = 0;
 			m_insertCount = 0;
 			m_removeCount = 0;
+
+			m_maxValue = 0;
 		}
 
 		size_t size( )
@@ -122,7 +124,7 @@ class dataStor
 
 		dataStor<T> replicate( )
 		{
-			dataStor<T> newDataStor( m_gif_count, m_gif_maxValue );
+			dataStor<T> newDataStor;
 			for( size_t i = 0U; i < m_data.size( ); i++ )
 			{
 				newDataStor.add( m_data[ i ] );
@@ -141,36 +143,11 @@ class dataStor
 				add( rand() % ( maxValue + 1 ) );
 			}
 
-			generateGif( count, maxValue );
-			addGifFrame( );
+			m_maxValue = maxValue;
 		}
 
-		void outputGif( )
+		void initGif( std::string fileName )
 		{
-			ge_close_gif( m_gif );
-		}
-	private:
-		dataStor( int count, int maxValue ) : dataStor( )
-		{
-			generateGif( count, maxValue );
-		}
-
-		std::vector<T> m_data;
-
-		int m_swapCount;
-		int m_accessCount;
-		int m_insertCount;
-		int m_removeCount;
-
-		ge_GIF* m_gif;
-		int m_gif_count;
-		int m_gif_maxValue;
-
-		void generateGif( int count, int maxValue )
-		{
-			m_gif_count = count;
-			m_gif_maxValue = maxValue;
-
 			uint8_t palette[ ] = {
 			    0x00, 0x00, 0x00,	// Black
 			    0xFF, 0xFF, 0xFF,	// White
@@ -180,37 +157,59 @@ class dataStor
 
 			int depth = 2;
 
-			m_gif = ge_new_gif( "test.gif", m_gif_count, m_gif_maxValue, palette, depth, 0 );
+			m_gif = ge_new_gif( fileName.c_str( ), m_data.size( ), m_maxValue, palette, depth, 0 );
+
+			addGifFrame( );
 		}
+
+		void outputGif( )
+		{
+			ge_close_gif( m_gif );
+		}
+	private:
+		std::vector<T> m_data;
+
+		int m_swapCount;
+		int m_accessCount;
+		int m_insertCount;
+		int m_removeCount;
+
+		ge_GIF* m_gif;
+		size_t m_maxValue;
 
 	    void addGifFrame( std::vector<int> markedValues = {} )
 	    {
-			for( int i = 0; i < m_gif_count * m_gif_maxValue; i++ )
+	    	if( m_data.size( ) * m_maxValue == 0U )
+	    	{
+	    		return;
+	    	}
+
+			for( size_t i = 0U; i < m_data.size( ) * m_maxValue; i++ )
 			{
 				m_gif->frame[ i ] = 1;
 			}
 
-			for( int i = 0; i < m_gif_count; i++ )
+			for( size_t i = 0U; i < m_data.size( ); i++ )
 			{
 				bool isMarked = false;
 				for( auto &v : markedValues )
 				{
-					if( v == i )
+					if( v == ( int ) i )
 					{
 						isMarked = true;
 						break;
 					}
 				}
 
-				for( int j = 0; j <= m_data[ i ]; j++ )
+				for( T j = 0; j <= m_data[ i ]; j++ )
 				{
 					if( isMarked )
 					{
-						m_gif->frame[ ( m_gif_maxValue - j ) * m_gif_count + i ] = 2;
+						m_gif->frame[ ( m_maxValue - j ) * m_data.size( ) + i ] = 2;
 					}
 					else
 					{
-						m_gif->frame[ ( m_gif_maxValue - j ) * m_gif_count + i ] = 0;
+						m_gif->frame[ ( m_maxValue - j ) * m_data.size( ) + i ] = 0;
 					}
 				}
 			}

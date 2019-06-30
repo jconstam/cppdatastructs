@@ -6,12 +6,17 @@ class sortBase
 	public:
 		sortBase( dataStor<T> data )
 		{
-			m_data = data.replicate( );
+			m_data = data;
 		}
 
 		void outputGif( )
 		{
 			m_data.outputGif( );
+		}
+
+		void initGif( std::string fileName )
+		{
+			m_data.initGif( fileName );
 		}
 
 		virtual void doSort( ) = 0;
