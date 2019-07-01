@@ -31,11 +31,28 @@ class SortTest : public ::testing::Test
 
 dataStor SortTest::m_data;
 
+TEST_F( SortTest, Base )
+{
+	sortBase sorter( m_data );
+	sorter.doSort( );
+	EXPECT_NE( true, sorter.isSorted( ) );
+}
+
 TEST_F( SortTest, Insertion )
 {
 	sort_insertion sorter( m_data );
 	sorter.doSort( );
 	EXPECT_EQ( true, sorter.isSorted( ) );
+}
+TEST_F( SortTest, InsertionWithGif )
+{
+	sort_insertion sorter( m_data );
+	sorter.doSortWithGif( "test.gif" );
+	EXPECT_EQ( true, sorter.isSorted( ) );
+
+	struct stat buffer;
+	ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
+	EXPECT_EQ( 0, remove( "test.gif" ) );
 }
 
 TEST_F( SortTest, Selection )
