@@ -13,7 +13,6 @@
 
 using namespace std;
 
-template <typename T>
 class dataStor
 {
 	public:
@@ -41,14 +40,14 @@ class dataStor
 			return m_data.size( );
 		}
 
-		void add( const T value )
+		void add( const int value )
 		{
 			m_data.push_back( value );
 		}
 
 		void swap( const int index1, const int index2 )
 		{
-			T temp = m_data[ index1 ];
+			int temp = m_data[ index1 ];
 			m_data[ index1 ] = m_data[ index2 ];
 			m_data[ index2 ] = temp;
 
@@ -57,9 +56,9 @@ class dataStor
 			m_swapCount++;
 		}
 
-		T remove( const int index )
+		int remove( const int index )
 		{
-			T value = m_data[ index ];
+			int value = m_data[ index ];
 
 			m_data.erase( m_data.begin( ) + index );
 
@@ -68,7 +67,7 @@ class dataStor
 			return value;
 		}
 
-		void insert( const T value, const int index )
+		void insert( const int value, const int index )
 		{
 			m_data.insert( m_data.begin( ) + index, value );
 
@@ -77,7 +76,7 @@ class dataStor
 			m_insertCount++;
 		}
 
-		T& operator[]( const int index )
+		int& operator[]( const int index )
 		{
 			m_accessCount++;
 
@@ -109,7 +108,7 @@ class dataStor
 
 		void randomize( )
 		{
-			std::vector<T> newData;
+			std::vector<int> newData;
 
 			srand( time( 0 ) );
 
@@ -121,12 +120,12 @@ class dataStor
 				m_data.erase( m_data.begin( ) + index );
 			}
 
-			m_data = std::vector<T>( newData );
+			m_data = std::vector<int>( newData );
 		}
 
-		dataStor<T> replicate( )
+		dataStor replicate( )
 		{
-			dataStor<T> newDataStor( m_maxValue );
+			dataStor newDataStor( m_maxValue );
 			for( size_t i = 0U; i < m_data.size( ); i++ )
 			{
 				newDataStor.add( m_data[ i ] );
@@ -174,7 +173,7 @@ class dataStor
 			m_maxValue = maxValue;
 		}
 
-		std::vector<T> m_data;
+		std::vector<int> m_data;
 
 		int m_swapCount;
 		int m_accessCount;
@@ -220,7 +219,7 @@ class dataStor
 					}
 				}
 
-				for( T j = 0; j <= m_data[ i ]; j++ )
+				for( int j = 0; j <= m_data[ i ]; j++ )
 				{
 					if( isMarked )
 					{

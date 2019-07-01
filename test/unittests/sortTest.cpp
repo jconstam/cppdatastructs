@@ -22,27 +22,27 @@ class SortTest : public ::testing::Test
 
 		}
 
-		static dataStor<int> m_data;
+		static dataStor m_data;
 };
 
-dataStor<int> SortTest::m_data;
+dataStor SortTest::m_data;
 
 TEST_F( SortTest, Insertion )
 {
-	sort_insertion<int> sorter( m_data );
+	sort_insertion sorter( m_data );
 	sorter.doSort( );
 	EXPECT_EQ( true, sorter.isSorted( ) );
 }
 
 TEST_F( SortTest, Selection )
 {
-	sort_selection<int> sorter( m_data );
+	sort_selection sorter( m_data );
 	sorter.doSort( );
 	EXPECT_EQ( true, sorter.isSorted( ) );
 }
 TEST_F( SortTest, Bubble )
 {
-	sort_bubble<int> sorter( m_data );
+	sort_bubble sorter( m_data );
 	sorter.doSort( );
 	EXPECT_EQ( true, sorter.isSorted( ) );
 }

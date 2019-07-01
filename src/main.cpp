@@ -8,7 +8,7 @@
 
 int main( int argc, char* argv[ ] )
 {
-	dataStor<int> test;
+	dataStor test;
 
 	test.generate( 500, 300 );
 	

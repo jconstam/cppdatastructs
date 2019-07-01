@@ -5,11 +5,10 @@
 
 #include "data.hpp"
 
-template <typename T>
 class sortBase
 {
 	public:
-		sortBase( dataStor<T> data )
+		sortBase( dataStor data )
 		{
 			m_data = data.replicate( );
 		}
@@ -42,7 +41,7 @@ class sortBase
 		}
 
 	protected:
-		dataStor<T> m_data;
+		dataStor m_data;
 };
 
 #endif

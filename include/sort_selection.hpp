@@ -3,11 +3,10 @@
 
 #include "sort.hpp"
 
-template <typename T>
-class sort_selection : public sortBase<T>
+class sort_selection : public sortBase
 {
 	public:
-		sort_selection( dataStor<T> data ) : sortBase<T>( data )
+		sort_selection( dataStor data ) : sortBase( data )
 		{
 
 		}
@@ -16,7 +15,7 @@ class sort_selection : public sortBase<T>
 		{
 			for( size_t i = 0; i < this->m_data.size( ); i++ )
 			{
-				T minValue = this->m_data[ i ];
+				int minValue = this->m_data[ i ];
 				int minValueIndex = ( int ) i;
 
 				for( size_t j = i + 1; j < this->m_data.size( ); j++ )

@@ -3,11 +3,10 @@
 
 #include "sort.hpp"
 
-template <typename T>
-class sort_bubble : public sortBase<T>
+class sort_bubble : public sortBase
 {
 	public:
-		sort_bubble( dataStor<T> data ) : sortBase<T>( data )
+		sort_bubble( dataStor data ) : sortBase( data )
 		{
 
 		}

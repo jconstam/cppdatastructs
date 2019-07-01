@@ -5,11 +5,10 @@
 
 #include "sort.hpp"
 
-template <typename T>
-class sort_insertion : public sortBase<T>
+class sort_insertion : public sortBase
 {
 	public:
-		sort_insertion( dataStor<T> data ) : sortBase<T>( data )
+		sort_insertion( dataStor data ) : sortBase( data )
 		{
 
 		}
@@ -20,7 +19,7 @@ class sort_insertion : public sortBase<T>
 			{
 				std::cout << i << std::endl;
 				int j;
-				T newValue = this->m_data.remove( i );
+				int newValue = this->m_data.remove( i );
 				for( j = 0; j < i; j++ )
 				{
 					if( newValue <= this->m_data[ j ] )

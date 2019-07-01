@@ -4,7 +4,7 @@
 
 TEST( DataTest, Constructor )
 {
-	dataStor<int> storage = dataStor<int>( );
+	dataStor storage = dataStor( );
 
 	EXPECT_EQ( 0, storage.getSwapCount( ) );
 	EXPECT_EQ( 0, storage.getAccessCount( ) );
@@ -12,7 +12,7 @@ TEST( DataTest, Constructor )
 
 TEST( DataTest, Access )
 {
-	dataStor<int> storage = dataStor<int>( );
+	dataStor storage = dataStor( );
 
 	storage.add( 1 );
 	storage.add( 2 );
@@ -27,7 +27,7 @@ TEST( DataTest, Access )
 
 TEST( DataTest, swap )
 {
-	dataStor<int> storage = dataStor<int>( );
+	dataStor storage = dataStor( );
 
 	storage.add( 1 );
 	storage.add( 2 );
@@ -50,7 +50,7 @@ TEST( DataTest, swap )
 
 TEST( DataTest, Remove )
 {
-	dataStor<int> storage = dataStor<int>( );
+	dataStor storage = dataStor( );
 
 	storage.add( 1 );
 	storage.add( 2 );
@@ -74,7 +74,7 @@ TEST( DataTest, Remove )
 
 TEST( DataTest, Insert )
 {
-	dataStor<int> storage = dataStor<int>( );
+	dataStor storage = dataStor( );
 
 	storage.add( 1 );
 	storage.add( 2 );
@@ -90,7 +90,7 @@ TEST( DataTest, Insert )
 
 TEST( DataTest, Sorted )
 {
-	dataStor<int> storage = dataStor<int>( );
+	dataStor storage = dataStor( );
 
 	storage.add( 1 );
 	storage.add( 2 );
@@ -105,7 +105,7 @@ TEST( DataTest, Sorted )
 
 TEST( DataTest, Randomize )
 {
-	dataStor<int> storage = dataStor<int>( );
+	dataStor storage = dataStor( );
 
 	storage.add( 1 );
 	storage.add( 2 );
@@ -128,7 +128,7 @@ TEST( DataTest, Randomize )
 
 TEST( DataTest, Replicate )
 {
-	dataStor<int> storage = dataStor<int>( );
+	dataStor storage = dataStor( );
 
 	storage.add( 1 );
 	storage.add( 2 );
@@ -136,7 +136,7 @@ TEST( DataTest, Replicate )
 
 	storage.randomize( );
 
-	dataStor<int> storage2 = storage.replicate( );
+	dataStor storage2 = storage.replicate( );
 
 	EXPECT_EQ( storage[ 0 ], storage2[ 0 ] );
 	EXPECT_EQ( storage[ 1 ], storage2[ 1 ] );
@@ -145,7 +145,7 @@ TEST( DataTest, Replicate )
 
 TEST( DataTest, Generate )
 {
-	dataStor<int> storage = dataStor<int>( );
+	dataStor storage = dataStor( );
 
 	storage.generate( 10, 5 );
 
