@@ -29,11 +29,7 @@ class dataStor
 
 			m_maxValue = 0;
 
-			if( m_gif != nullptr )
-			{
-				delete m_gif;
-				m_gif = nullptr;
-			}
+			m_gif = gifData( );
 		}
 
 		size_t size( )
@@ -150,17 +146,12 @@ class dataStor
 
 		void initGif( std::string fileName )
 		{
-			m_gif = new gifData( fileName, m_data, m_maxValue );
+			m_gif.init( fileName, m_data, m_maxValue );
 		}
 
 		void outputGif( )
 		{
-			if( m_gif != nullptr )
-			{
-				m_gif->finalize( );
-
-				delete m_gif;
-			}
+			m_gif.finalize( );
 		}
 	private:
 		dataStor( int maxValue ) : dataStor( )
@@ -177,14 +168,11 @@ class dataStor
 
 		int m_maxValue;
 
-		gifData* m_gif = nullptr;
+		gifData m_gif;
 
 	    void addGifFrame( std::vector<int> markedValues = {} )
 	    {
-	    	if( m_gif != nullptr )
-	    	{
-	    		m_gif->addFrame( m_data, markedValues );
-	    	}
+	    	m_gif.addFrame( m_data, markedValues );
 	    }
 };
 

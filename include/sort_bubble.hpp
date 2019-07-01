@@ -17,11 +17,11 @@ class sort_bubble : public sortBase
 			{
 				int swapCount = 0;
 
-				for( size_t i = 0; i < this->m_data.size( ) - 1U; i++ )
+				for( size_t i = 0; i < m_data.size( ) - 1U; i++ )
 				{
-					if( this->m_data[ i ] > this->m_data[ i + 1U ] )
+					if( m_data[ i ] > m_data[ i + 1U ] )
 					{
-						this->m_data.swap( i, i + 1U );
+						m_data.swap( i, i + 1U );
 						swapCount++;
 					}
 				}

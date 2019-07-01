@@ -13,21 +13,21 @@ class sort_selection : public sortBase
 
 		void doSort( )
 		{
-			for( size_t i = 0; i < this->m_data.size( ); i++ )
+			for( size_t i = 0; i < m_data.size( ); i++ )
 			{
-				int minValue = this->m_data[ i ];
+				int minValue = m_data[ i ];
 				int minValueIndex = ( int ) i;
 
-				for( size_t j = i + 1; j < this->m_data.size( ); j++ )
+				for( size_t j = i + 1; j < m_data.size( ); j++ )
 				{
-					if( this->m_data[ j ] < minValue )
+					if( m_data[ j ] < minValue )
 					{
-						minValue = this->m_data[ j ];
+						minValue = m_data[ j ];
 						minValueIndex = ( int ) j;	
 					}
 				}
 
-				this->m_data.swap( i, minValueIndex );
+				m_data.swap( i, minValueIndex );
 			}
 		}
 };

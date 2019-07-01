@@ -11,15 +11,15 @@ int main( int argc, char* argv[ ] )
 	dataStor test;
 
 	test.generate( 500, 300 );
+
+	sort_insertion sort_insert( test );
+	sort_insert.doSortWithGif( "insert.gif" );
 	
 	sort_selection sort_select( test );
 	sort_select.doSortWithGif( "select.gif" );
 
-	//sort_insertion sort_insert( test );
-	//sort_insert.doSortWithGif( "insert.gif" );
-
-	//sort_bubble sort_bubble( test );
-	//sort_bubble.doSortWithGif( "bubble.gif" );
+	sort_bubble sort_bubble( test );
+	sort_bubble.doSortWithGif( "bubble.gif" );
 
 	return 0;
 }

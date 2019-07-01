@@ -9,7 +9,23 @@
 class gifData
 {
 	public:
-		gifData( std::string fileName, std::vector<int> firstFrame, size_t maxValue )
+		gifData( )
+		{
+			m_active = false;
+			m_gif = nullptr;
+			m_maxValue = 0;
+			m_count = 0;
+		}
+
+		~gifData( )
+		{
+			if( m_active )
+			{
+				ge_close_gif( m_gif );
+			}
+		}
+		
+		void init( std::string fileName, std::vector<int> firstFrame, size_t maxValue )
 		{
 			uint8_t palette[ ] = {
 			    0x00, 0x00, 0x00,	// Black
@@ -22,6 +38,7 @@ class gifData
 
 			m_count = firstFrame.size( );
 			m_maxValue = maxValue;
+			m_active = true;
 
 			m_gif = ge_new_gif( fileName.c_str( ), m_count, m_maxValue, palette, depth, -1 );
 
@@ -30,13 +47,21 @@ class gifData
 
 		void finalize( )
 		{
-			ge_close_gif( m_gif );
+			if( m_active )
+			{
+				ge_close_gif( m_gif );
+				m_active = false;
+			}
 		}
 
 	    void addFrame( std::vector<int> frameData, std::vector<int> markedValues = {} )
 	    {
 	    	static int speedUpCount = 0;
 
+	    	if( !m_active )
+	    	{
+	    		return;
+	    	}
 	    	if( m_count * m_maxValue == 0U )
 	    	{
 	    		return;
@@ -67,15 +92,15 @@ class gifData
 					}
 				}
 
-				for( int j = 0; j <= frameData[ i ]; j++ )
+				for( int j = 0; j < frameData[ i ]; j++ )
 				{
 					if( isMarked )
 					{
-						m_gif->frame[ ( m_maxValue - j ) * m_count + i ] = 2;
+						m_gif->frame[ ( m_maxValue - j - 1 ) * m_count + i ] = 2;
 					}
 					else
 					{
-						m_gif->frame[ ( m_maxValue - j ) * m_count + i ] = 0;
+						m_gif->frame[ ( m_maxValue - j - 1 ) * m_count + i ] = 0;
 					}
 				}
 			}
@@ -84,7 +109,10 @@ class gifData
 	    }
 
 	private:
+		bool m_active;
+
 		ge_GIF* m_gif;
+
 		size_t m_maxValue;
 		size_t m_count;
 
