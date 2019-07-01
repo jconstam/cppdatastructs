@@ -35,7 +35,6 @@ add_test( unittest_coverage
           --root ${PROJECT_SOURCE_DIR}/.. 
           --exclude .*test.* 
           --sort-percentage 
-          --keep 
           --print-summary 
           --fail-under-line 100 
           --fail-under-branch 100 
