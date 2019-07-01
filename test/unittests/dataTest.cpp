@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <ctime>
+#include <cstdio>
+
+#include <sys/stat.h>
 
 #include "data.hpp"
 
@@ -158,4 +161,25 @@ TEST( DataTest, Generate )
 	{
 		EXPECT_GE( 5, storage[ i ] );
 	}
+}
+
+TEST( DataTest, Gif )
+{
+	dataStor storage = dataStor( );
+
+	storage.add( 1 );
+	storage.add( 2 );
+	storage.add( 3 );
+
+	storage.outputGif( );
+	storage.initGif( "test.gif" );
+	storage.swap( 0, 1 );
+	storage.outputGif( );
+
+	storage.initGif( "test.gif" );
+	storage.clear( );
+
+	struct stat buffer;
+	ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
+	EXPECT_EQ( 0, remove( "test.gif" ) );
 }
