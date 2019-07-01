@@ -2,14 +2,11 @@
 #define DATA_HPP__
 
 #include <vector>
-#include <ctime>
 #include <cstdlib>
-#include <iostream>
-#include <algorithm>
 
 #include <unistd.h>
 
-#include "gifenc.h"
+#include "gifData.hpp"
 
 using namespace std;
 
@@ -32,7 +29,11 @@ class dataStor
 
 			m_maxValue = 0;
 
-			m_gif = nullptr;
+			if( m_gif != nullptr )
+			{
+				delete m_gif;
+				m_gif = nullptr;
+			}
 		}
 
 		size_t size( )
@@ -149,23 +150,17 @@ class dataStor
 
 		void initGif( std::string fileName )
 		{
-			uint8_t palette[ ] = {
-			    0x00, 0x00, 0x00,	// Black
-			    0xFF, 0xFF, 0xFF,	// White
-			    0xFF, 0x00, 0x00,	// Red
-			    0x00, 0x00, 0xFF	// Blue
-			};
-
-			int depth = 2;
-
-			m_gif = ge_new_gif( fileName.c_str( ), m_data.size( ), m_maxValue, palette, depth, 0 );
-
-			addGifFrame( );
+			m_gif = new gifData( fileName, m_data, m_maxValue );
 		}
 
 		void outputGif( )
 		{
-			ge_close_gif( m_gif );
+			if( m_gif != nullptr )
+			{
+				m_gif->finalize( );
+
+				delete m_gif;
+			}
 		}
 	private:
 		dataStor( int maxValue ) : dataStor( )
@@ -180,59 +175,16 @@ class dataStor
 		int m_insertCount;
 		int m_removeCount;
 
-		ge_GIF* m_gif;
-		size_t m_maxValue;
+		int m_maxValue;
 
-		static const int m_speedUpFactor = 10;
+		gifData* m_gif = nullptr;
 
 	    void addGifFrame( std::vector<int> markedValues = {} )
 	    {
-	    	static int speedUpCount = 0;
-
-	    	if( m_data.size( ) * m_maxValue == 0U )
+	    	if( m_gif != nullptr )
 	    	{
-	    		return;
+	    		m_gif->addFrame( m_data, markedValues );
 	    	}
-
-	    	speedUpCount++;
-	    	speedUpCount %= m_speedUpFactor;
-
-	    	if( speedUpCount != 0 )
-	    	{
-	    		return;
-	    	}
-
-			for( size_t i = 0U; i < m_data.size( ) * m_maxValue; i++ )
-			{
-				m_gif->frame[ i ] = 1;
-			}
-
-			for( size_t i = 0U; i < m_data.size( ); i++ )
-			{
-				bool isMarked = false;
-				for( auto &v : markedValues )
-				{
-					if( v == ( int ) i )
-					{
-						isMarked = true;
-						break;
-					}
-				}
-
-				for( int j = 0; j <= m_data[ i ]; j++ )
-				{
-					if( isMarked )
-					{
-						m_gif->frame[ ( m_maxValue - j ) * m_data.size( ) + i ] = 2;
-					}
-					else
-					{
-						m_gif->frame[ ( m_maxValue - j ) * m_data.size( ) + i ] = 0;
-					}
-				}
-			}
-
-			ge_add_frame( m_gif, 0 );
 	    }
 };
 

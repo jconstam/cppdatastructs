@@ -15,6 +15,10 @@ class SortTest : public ::testing::Test
 			{
 				m_data.add( i );
 			}
+			for( int i = 0; i <= 100; i++ )
+			{
+				m_data.add( i );
+			}
 		}
 
 		void TearDown( ) override

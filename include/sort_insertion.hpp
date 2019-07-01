@@ -22,7 +22,7 @@ class sort_insertion : public sortBase
 				int newValue = this->m_data.remove( i );
 				for( j = 0; j < i; j++ )
 				{
-					if( newValue <= this->m_data[ j ] )
+					if( newValue < this->m_data[ j ] )
 					{
 						this->m_data.insert( newValue, j );
 						break;

@@ -1,6 +1,11 @@
 #include "gtest/gtest.h"
 
+#include <iostream>
+#include <ctime>
+
 #include "data.hpp"
+
+using namespace std;
 
 TEST( DataTest, Constructor )
 {
