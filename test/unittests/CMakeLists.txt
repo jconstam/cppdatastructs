@@ -19,6 +19,7 @@ set( UNITTEST_SOURCES
     ${GIF_ROOT}/gifenc.c
 
     ${UNITTEST_ROOT}/dataTest.cpp
+    ${UNITTEST_ROOT}/gifTest.cpp
     ${UNITTEST_ROOT}/sortTest.cpp
 )
 
