@@ -11,7 +11,7 @@ pool:
 
 steps:
 - script: |
-    pip install --user --upgrade pip      
+    python -m pip install --user --upgrade pip      
     pip install --user gcovr
   displayName: 'Install Dependencies'
 - script: |
