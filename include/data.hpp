@@ -144,13 +144,14 @@ class dataStor
 			m_maxValue = maxValue;
 		}
 
-		void initGif( std::string fileName )
+		void initGif( std::string fileName, int speedUpFactor )
 		{
-			m_gif.init( fileName, m_data, m_maxValue );
+			m_gif.init( fileName, m_data, m_maxValue, speedUpFactor );
 		}
 
 		void outputGif( )
 		{
+			addGifFrame( {}, true );
 			m_gif.finalize( );
 		}
 	private:
@@ -170,9 +171,9 @@ class dataStor
 
 		gifData m_gif;
 
-	    void addGifFrame( std::vector<int> markedValues = {} )
+	    void addGifFrame( std::vector<int> markedValues = {}, bool force = false )
 	    {
-	    	m_gif.addFrame( m_data, markedValues );
+	    	m_gif.addFrame( m_data, markedValues, force );
 	    }
 };
 

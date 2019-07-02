@@ -14,16 +14,16 @@ int main( int argc, char* argv[ ] )
 	test.generate( 1000, 400 );
 
 	sort_insertion sort_insert( test );
-	sort_insert.doSortWithGif( "insert.gif" );
+	sort_insert.doSortWithGif( "insert.gif", 5 );
 	
 	sort_selection sort_select( test );
-	sort_select.doSortWithGif( "select.gif" );
+	sort_select.doSortWithGif( "select.gif", 5 );
 
 	sort_merge sort_merge( test );
-	sort_merge.doSortWithGif( "merge.gif" );
+	sort_merge.doSortWithGif( "merge.gif", 8 );
 
-	//sort_bubble sort_bubble( test );
-	//sort_bubble.doSortWithGif( "bubble.gif" );
+	sort_bubble sort_bubble( test );
+	sort_bubble.doSortWithGif( "bubble.gif", 1000 );
 
 	return 0;
 }

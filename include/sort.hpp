@@ -23,14 +23,14 @@ class sortBase
 			m_data.outputGif( );
 		}
 
-		void initGif( std::string fileName )
+		void initGif( std::string fileName, int speedUpFactor )
 		{
-			m_data.initGif( fileName );
+			m_data.initGif( fileName, speedUpFactor );
 		}
 
-		void doSortWithGif( std::string fileName )
+		void doSortWithGif( std::string fileName, int speedUpFactor )
 		{
-			initGif( fileName );
+			initGif( fileName, speedUpFactor );
 			doSort( );
 			outputGif( );
 		}

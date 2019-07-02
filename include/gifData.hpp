@@ -25,7 +25,7 @@ class gifData
 			}
 		}
 		
-		void init( std::string fileName, std::vector<int> firstFrame, size_t maxValue )
+		void init( std::string fileName, std::vector<int> firstFrame, size_t maxValue, int speedUpFactor )
 		{
 			uint8_t palette[ ] = {
 			    0x00, 0x00, 0x00,	// Black
@@ -39,6 +39,7 @@ class gifData
 			m_count = firstFrame.size( );
 			m_maxValue = maxValue;
 			m_active = true;
+			m_speedUpFactor = speedUpFactor;
 
 			m_gif = ge_new_gif( fileName.c_str( ), m_count, m_maxValue, palette, depth, -1 );
 
@@ -54,7 +55,7 @@ class gifData
 			}
 		}
 
-	    void addFrame( std::vector<int> frameData, std::vector<int> markedValues = {} )
+	    void addFrame( std::vector<int> frameData, std::vector<int> markedValues = {}, bool force = false )
 	    {
 	    	static int speedUpCount = 0;
 
@@ -67,18 +68,22 @@ class gifData
 	    		return;
 	    	}
 
-	    	speedUpCount++;
-	    	speedUpCount %= m_speedUpFactor;
-
-	    	if( speedUpCount != 0 )
+	    	if( !force )
 	    	{
-	    		return;
-	    	}
+		    	speedUpCount++;
+		    	speedUpCount %= m_speedUpFactor;
 
-			for( size_t i = 0U; i < m_count * m_maxValue; i++ )
-			{
-				m_gif->frame[ i ] = 1;
+		    	if( speedUpCount != 0 )
+		    	{
+		    		return;
+		    	}
+
+				for( size_t i = 0U; i < m_count * m_maxValue; i++ )
+				{
+					m_gif->frame[ i ] = 1;
+				}
 			}
+
 
 			for( size_t i = 0U; i < m_count; i++ )
 			{
@@ -115,8 +120,7 @@ class gifData
 
 		size_t m_maxValue;
 		size_t m_count;
-
-		static const int m_speedUpFactor = 5;
+		int m_speedUpFactor;
 };
 
 #endif
