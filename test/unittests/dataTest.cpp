@@ -172,11 +172,11 @@ TEST( DataTest, Gif )
 	storage.add( 3 );
 
 	storage.outputGif( );
-	storage.initGif( "test.gif" );
+	storage.initGif( "test.gif", 1 );
 	storage.swap( 0, 1 );
 	storage.outputGif( );
 
-	storage.initGif( "test.gif" );
+	storage.initGif( "test.gif", 1 );
 	storage.clear( );
 
 	struct stat buffer;

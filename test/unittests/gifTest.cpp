@@ -8,13 +8,13 @@ TEST( GifTest, Base )
 
 	gifData gif;
 
-	gif.init( "test.gif", data, 3 );
+	gif.init( "test.gif", data, 3, 5 );
 	for( int i = 0; i < 10; i++ )
 	{
 		gif.addFrame( data );
 	}
 	for( int i = 0; i < 10; i++ )
 	{
-		gif.addFrame( data, { 2 } );
+		gif.addFrame( data, { 2 }, true );
 	}
 }

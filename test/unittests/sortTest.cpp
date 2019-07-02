@@ -48,7 +48,7 @@ TEST_F( SortTest, Insertion )
 TEST_F( SortTest, InsertionWithGif )
 {
 	sort_insertion sorter( m_data );
-	sorter.doSortWithGif( "test.gif" );
+	sorter.doSortWithGif( "test.gif", 1 );
 	EXPECT_EQ( true, sorter.isSorted( ) );
 
 	struct stat buffer;
@@ -65,7 +65,7 @@ TEST_F( SortTest, Selection )
 TEST_F( SortTest, SelectionWithGif )
 {
 	sort_selection sorter( m_data );
-	sorter.doSortWithGif( "test.gif" );
+	sorter.doSortWithGif( "test.gif", 1 );
 	EXPECT_EQ( true, sorter.isSorted( ) );
 
 	struct stat buffer;
@@ -82,7 +82,7 @@ TEST_F( SortTest, Bubble )
 TEST_F( SortTest, BubbleWithGif )
 {
 	sort_bubble sorter( m_data );
-	sorter.doSortWithGif( "test.gif" );
+	sorter.doSortWithGif( "test.gif", 1 );
 	EXPECT_EQ( true, sorter.isSorted( ) );
 
 	struct stat buffer;
@@ -99,7 +99,7 @@ TEST_F( SortTest, Merge )
 TEST_F( SortTest, MergeWithGif )
 {
 	sort_merge sorter( m_data );
-	sorter.doSortWithGif( "test.gif" );
+	sorter.doSortWithGif( "test.gif", 1 );
 	EXPECT_EQ( true, sorter.isSorted( ) );
 
 	struct stat buffer;
