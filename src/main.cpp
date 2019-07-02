@@ -11,19 +11,19 @@ int main( int argc, char* argv[ ] )
 {
 	dataStor test;
 
-	test.generate( 1000, 400 );
+	test.generate( 1000, 500 );
 
 	sort_insertion sort_insert( test );
-	sort_insert.doSortWithGif( "insert.gif", 5 );
+	sort_insert.doSortWithGif( "images/insert.gif", 5 );
 	
 	sort_selection sort_select( test );
-	sort_select.doSortWithGif( "select.gif", 5 );
+	sort_select.doSortWithGif( "images/select.gif", 5 );
 
 	sort_merge sort_merge( test );
-	sort_merge.doSortWithGif( "merge.gif", 8 );
+	sort_merge.doSortWithGif( "images/merge.gif", 5 );
 
 	sort_bubble sort_bubble( test );
-	sort_bubble.doSortWithGif( "bubble.gif", 1000 );
+	sort_bubble.doSortWithGif( "images/bubble.gif", 1000 );
 
 	return 0;
 }

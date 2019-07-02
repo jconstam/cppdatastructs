@@ -40,6 +40,7 @@ class dataStor
 		void add( const int value )
 		{
 			m_data.push_back( value );
+			m_maxValue = std::max( value, m_maxValue );
 		}
 
 		void swap( const int index1, const int index2 )
