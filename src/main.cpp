@@ -12,11 +12,7 @@ int main( int argc, char* argv[ ] )
 {
 	dataStor test;
 
-	//test.generate( 1000, 500 );
-	for( int i = 1000; i >= 0; i-- )
-	{
-		test.add( i );
-	}
+	test.generate( 500, 200 );
 
 	sort_insertion sort_insert( test );
 	sort_insert.doSortWithGif( "images/insert.gif", 5 );
