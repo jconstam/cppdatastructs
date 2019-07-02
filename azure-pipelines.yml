@@ -11,11 +11,9 @@ pool:
 
 steps:
 - script: |
-    pip install gcovr
-  displayName: 'Install Dependencies'
-- script: |
     make -j
   displayName: 'Build Main'
 - script: |
+    pip install gcovr
     make -j test
   displayName: 'Build Tests'
