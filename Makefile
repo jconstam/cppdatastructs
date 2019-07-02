@@ -8,6 +8,7 @@ INCLUDE_PATH=${ROOT_PATH}/include
 TEST_PATH=${ROOT_PATH}/test
 
 BUILD_PATH=${ROOT_PATH}/build
+IMAGE_PATH=${ROOT_PATH}/images
 OUTPUT_PATH=${BUILD_PATH}/${PROJ_NAME}
 OUTPUT_TEST_PATH=${OUTPUT_PATH}/test
 
@@ -41,3 +42,4 @@ build_tests_coverage:
 .PHONY: clean
 clean:
 	rm -rf ${BUILD_PATH}
+	rm -rf ${IMAGE_PATH}/*

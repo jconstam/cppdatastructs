@@ -1,8 +1,6 @@
 #ifndef SORT_HPP__
 #define SORT_HPP__
 
-#include <iostream>
-
 #include "data.hpp"
 
 class sortBase

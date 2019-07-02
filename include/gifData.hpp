@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <sys/stat.h>
 
 #include "gifenc.h"
 
@@ -41,6 +42,12 @@ class gifData
 			m_active = true;
 			m_speedUpFactor = speedUpFactor;
 
+			struct stat buffer;
+			if( stat( "test.gif", &( buffer ) ) == 0 )
+			{
+				remove( "test.gif" );
+			}
+
 			m_gif = ge_new_gif( fileName.c_str( ), m_count, m_maxValue, palette, depth, -1 );
 
 			addFrame( firstFrame );
@@ -60,10 +67,6 @@ class gifData
 	    	static int speedUpCount = 0;
 
 	    	if( !m_active )
-	    	{
-	    		return;
-	    	}
-	    	if( m_count * m_maxValue == 0U )
 	    	{
 	    		return;
 	    	}
