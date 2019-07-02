@@ -4,6 +4,7 @@
 #include "sort_insertion.hpp"
 #include "sort_selection.hpp"
 #include "sort_bubble.hpp"
+#include "sort_merge.hpp"
 
 class SortTest : public ::testing::Test 
 {
@@ -61,9 +62,47 @@ TEST_F( SortTest, Selection )
 	sorter.doSort( );
 	EXPECT_EQ( true, sorter.isSorted( ) );
 }
+TEST_F( SortTest, SelectionWithGif )
+{
+	sort_selection sorter( m_data );
+	sorter.doSortWithGif( "test.gif" );
+	EXPECT_EQ( true, sorter.isSorted( ) );
+
+	struct stat buffer;
+	ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
+	EXPECT_EQ( 0, remove( "test.gif" ) );
+}
+
 TEST_F( SortTest, Bubble )
 {
 	sort_bubble sorter( m_data );
 	sorter.doSort( );
 	EXPECT_EQ( true, sorter.isSorted( ) );
+}
+TEST_F( SortTest, BubbleWithGif )
+{
+	sort_bubble sorter( m_data );
+	sorter.doSortWithGif( "test.gif" );
+	EXPECT_EQ( true, sorter.isSorted( ) );
+
+	struct stat buffer;
+	ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
+	EXPECT_EQ( 0, remove( "test.gif" ) );
+}
+
+TEST_F( SortTest, Merge )
+{
+	sort_merge sorter( m_data );
+	sorter.doSort( );
+	EXPECT_EQ( true, sorter.isSorted( ) );
+}
+TEST_F( SortTest, MergeWithGif )
+{
+	sort_merge sorter( m_data );
+	sorter.doSortWithGif( "test.gif" );
+	EXPECT_EQ( true, sorter.isSorted( ) );
+
+	struct stat buffer;
+	ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
+	EXPECT_EQ( 0, remove( "test.gif" ) );
 }

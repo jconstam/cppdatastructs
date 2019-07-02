@@ -116,7 +116,7 @@ class gifData
 		size_t m_maxValue;
 		size_t m_count;
 
-		static const int m_speedUpFactor = 10;
+		static const int m_speedUpFactor = 5;
 };
 
 #endif
