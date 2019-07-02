@@ -14,6 +14,7 @@ steps:
     make -j
   displayName: 'Build Main'
 - script: |
+    python -m venv env && . env/bin/activate && pip install --upgrade pip
     pip install gcovr
     make -j test
   displayName: 'Build Tests'
