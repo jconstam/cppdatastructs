@@ -11,5 +11,8 @@ pool:
 
 steps:
 - script: |
-    make
-  displayName: 'make'
+    make -j
+  displayName: 'Build Main'
+- script: |
+    make -j test
+  displayName: 'Build Tests'
