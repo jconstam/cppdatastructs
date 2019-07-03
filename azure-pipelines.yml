@@ -1,20 +1,30 @@
-# C/C++ with GCC
-# Build your C/C++ project with GCC using make.
-# Add steps that publish test results, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/c-cpp/gcc
+# Azure DevOps CI Configuration
 
-trigger:
-- master
-
+# Use standard Ubuntu 16.04 host
 pool:
-  vmImage: 'ubuntu-latest'
+  name: Hosted Ubuntu 1604
 
+# Execution Steps
 steps:
+# Use Python 3.6
+- task: UsePythonVersion@0
+  displayName: 'Use Python 3.6'
+  inputs:
+    versionSpec: 3.6
+# Update pip and install gcovr
 - script: |
-    make -j
-  displayName: 'Build Main'
-- script: |
-    python -m venv env pip install --upgrade pip
-    pip install gcovr
-    make -j test
-  displayName: 'Build Tests'
+   python -m pip install --upgrade pip 
+   pip install gcovr
+  displayName: 'Install Dependencies'
+# Build main binary
+- script: 'make -j'
+  displayName: 'Make Main'
+# Build tests
+- script: 'make -j test'
+  displayName: 'Make Tests'
+# Publish test coverage
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish Test Coverage'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: build/cppdatastructs/test/unittests/cppdatastructstest.xml
