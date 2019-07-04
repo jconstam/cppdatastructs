@@ -23,12 +23,12 @@ steps:
 - script: 'make -j test'
   displayName: 'Make Tests'
 # Publish test report
-- task: PublishTestResults@1
+- task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: 'build/cppdatastructs/test/unittests/cppdatastructstest_unittests.xml'
 # Publish test coverage
-- task: PublishCodeCoverageResults@2
+- task: PublishCodeCoverageResults@1
   displayName: 'Publish Test Coverage'
   inputs:
     codeCoverageTool: Cobertura
