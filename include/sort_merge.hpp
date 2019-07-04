@@ -13,7 +13,7 @@ class sort_merge : public sortBase
 
 		}
 
-		void doSort( )
+		void actualSort( )
 		{
 			merge( 0, m_data.size( ) - 1 );
 		}

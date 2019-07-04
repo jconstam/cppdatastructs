@@ -1,6 +1,8 @@
 #ifndef SORT_HPP__
 #define SORT_HPP__
 
+#include <chrono>
+
 #include "data.hpp"
 
 class sortBase
@@ -41,6 +43,11 @@ class sortBase
 			return m_data.getOpsCount( );
 		}
 
+		double getSortTime( )
+		{
+			return sortTime.count( );
+		}
+
 		void outputGif( )
 		{
 			m_data.outputGif( );
@@ -58,13 +65,22 @@ class sortBase
 			outputGif( );
 		}
 
-		virtual void doSort( )
+		void doSort( )
 		{
-			return;
+			auto start = std::chrono::high_resolution_clock::now( );
+
+			actualSort( );
+
+			auto end = std::chrono::high_resolution_clock::now( );
+
+			sortTime = std::chrono::duration_cast< std::chrono::nanoseconds >( end - start );
 		}
 
 	protected:
 		dataStor m_data;
+		std::chrono::duration<double, std::ratio<1>> sortTime;
+
+		virtual void actualSort( ) = 0;
 };
 
 #endif

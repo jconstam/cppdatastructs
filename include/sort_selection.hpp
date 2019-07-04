@@ -11,7 +11,7 @@ class sort_selection : public sortBase
 
 		}
 
-		void doSort( )
+		void actualSort( )
 		{
 			for( size_t i = 0; i < m_data.size( ); i++ )
 			{

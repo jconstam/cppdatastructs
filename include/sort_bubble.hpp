@@ -11,7 +11,7 @@ class sort_bubble : public sortBase
 
 		}
 
-		void doSort( )
+		void actualSort( )
 		{
 			size_t counter = 1;
 			while( 1 )

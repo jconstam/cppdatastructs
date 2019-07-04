@@ -11,7 +11,7 @@ class sort_insertion : public sortBase
 
 		}
 
-		void doSort( )
+		void actualSort( )
 		{
 			for( int i = 1; i < ( int ) m_data.size( ); i++ )
 			{

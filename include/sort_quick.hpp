@@ -13,7 +13,7 @@ class sort_quick : public sortBase
 
 		}
 
-		void doSort( )
+		void actualSort( )
 		{
 			srand( time( 0 ) );
 			quick( 0, m_data.size( ) - 1, 0 );
