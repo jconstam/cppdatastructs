@@ -66,7 +66,7 @@ static void generateHTMLReport_PrintSortData( htmlGen& generator, dataStor& data
 	sort_quick.doSort( );
 
 	generator.openTag( HTML_TAG_TR );
-	generator.writeTagWithValue( HTML_TAG_TD, name );
+	generator.writeTagWithValue( HTML_TAG_TD, name, { "id=rowLead" } );
 	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getOpsCount( ) ) );
 	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getOpsCount( ) ) );
 	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_bubble.getOpsCount( ) ) );
@@ -102,7 +102,11 @@ static void generateHTMLReport( )
 	generator.write( "\tborder: 1px solid black;" );
 	generator.write( "}" );
 	generator.write( "th, td {" );
+	generator.write( "\ttext-align: center;" );
 	generator.write( "\tpadding: 5px;" );
+	generator.write( "}" );
+	generator.write( "#rowLead {" );
+	generator.write( "\ttext-align: left;" );
 	generator.write( "}" );
 	generator.write( "tr:nth-child(even) {" );
 	generator.write( "\tbackground-color: #f2f2f2;" );
@@ -111,7 +115,6 @@ static void generateHTMLReport( )
 	generator.openTag( HTML_TAG_BODY );
 
 	generator.openTag( HTML_TAG_DIV );
-	generator.writeTagWithValue( HTML_TAG_H2, name );
 	generator.openTag( HTML_TAG_TABLE );
 	generator.openTag( HTML_TAG_TR );
 	generator.writeTagWithValue( HTML_TAG_TH, "" );
@@ -125,8 +128,12 @@ static void generateHTMLReport( )
 	generateHTMLTable_Random( generator, 100 );
 	cout << "\tRandom data (1000)..." << endl;
 	generateHTMLTable_Random( generator, 1000 );
-	//cout << "\tRandom data (10000)..." << endl;
-	//generateHTMLTable_Random( generator, 10000 );
+	#ifdef BIG_STUFF
+	cout << "\tRandom data (10000)..." << endl;
+	generateHTMLTable_Random( generator, 10000 );
+	cout << "\tRandom data (100000)..." << endl;
+	generateHTMLTable_Random( generator, 100000 );
+	#endif
 	generator.closeTag( HTML_TAG_TABLE );
 	generator.closeTag( HTML_TAG_DIV );
 
