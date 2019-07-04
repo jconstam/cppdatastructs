@@ -11,6 +11,7 @@ set( SOURCES
 	${PROJECT_SOURCE_DIR}/../gif/gifenc.c
 
 	${PROJECT_SOURCE_DIR}/main.cpp
+	${PROJECT_SOURCE_DIR}/htmlGen.cpp
 )
 
 include_directories( ${PROJECT_NAME_LIBRARY} ${PROJECT_SOURCE_DIR}/../include ${PROJECT_SOURCE_DIR}/../gif )

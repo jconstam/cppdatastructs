@@ -16,6 +16,26 @@ class sortBase
 			return m_data.isSorted( );
 		}
 
+		int getSwapCount( )
+		{
+			return m_data.getSwapCount( );
+		}
+		
+		int getAccessCount( )
+		{
+			return m_data.getAccessCount( );
+		}
+
+		int getInsertCount( )
+		{
+			return m_data.getInsertCount( );
+		}
+
+		int getRemoveCount( )
+		{
+			return m_data.getRemoveCount( );
+		}
+
 		void outputGif( )
 		{
 			m_data.outputGif( );

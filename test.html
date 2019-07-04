@@ -1,0 +1,155 @@
+<html>
+	<title>C++ Sorting</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		table, th, td {
+			border: 1px solid black;
+		}
+		th, td {
+			padding: 5px;
+		}
+		tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+	</style>
+	<body>
+		<div>
+			<h2>Randomized array, 100 items</h2>
+			<table>
+				<tr>
+					<th></th>
+					<th>Insertion</th>
+					<th>Selection</th>
+					<th>Bubble</th>
+					<th>Merge</th>
+					<th>Quick</th>
+				</tr>
+				<tr>
+					<td>Accesses</td>
+					<td>2735</td>
+					<td>5336</td>
+					<td>9880</td>
+					<td>1174</td>
+					<td>448</td>
+				</tr>
+				<tr>
+					<td>Swaps</td>
+					<td>0</td>
+					<td>100</td>
+					<td>2308</td>
+					<td>15</td>
+					<td>59</td>
+				</tr>
+				<tr>
+					<td>Inserts</td>
+					<td>99</td>
+					<td>0</td>
+					<td>0</td>
+					<td>273</td>
+					<td>673</td>
+				</tr>
+				<tr>
+					<td>Removes</td>
+					<td>99</td>
+					<td>0</td>
+					<td>0</td>
+					<td>273</td>
+					<td>673</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<h2>Randomized array, 1000 items</h2>
+			<table>
+				<tr>
+					<th></th>
+					<th>Insertion</th>
+					<th>Selection</th>
+					<th>Bubble</th>
+					<th>Merge</th>
+					<th>Quick</th>
+				</tr>
+				<tr>
+					<td>Accesses</td>
+					<td>253477</td>
+					<td>505454</td>
+					<td>998400</td>
+					<td>18276</td>
+					<td>4326</td>
+				</tr>
+				<tr>
+					<td>Swaps</td>
+					<td>0</td>
+					<td>1000</td>
+					<td>247020</td>
+					<td>167</td>
+					<td>547</td>
+				</tr>
+				<tr>
+					<td>Inserts</td>
+					<td>999</td>
+					<td>0</td>
+					<td>0</td>
+					<td>4433</td>
+					<td>10113</td>
+				</tr>
+				<tr>
+					<td>Removes</td>
+					<td>999</td>
+					<td>0</td>
+					<td>0</td>
+					<td>4433</td>
+					<td>10113</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<h2>Randomized array, 10000 items</h2>
+			<table>
+				<tr>
+					<th></th>
+					<th>Insertion</th>
+					<th>Selection</th>
+					<th>Bubble</th>
+					<th>Merge</th>
+					<th>Quick</th>
+				</tr>
+				<tr>
+					<td>Accesses</td>
+					<td>25133703</td>
+					<td>50080505</td>
+					<td>99958138</td>
+					<td>250264</td>
+					<td>43729</td>
+				</tr>
+				<tr>
+					<td>Swaps</td>
+					<td>0</td>
+					<td>10000</td>
+					<td>24871286</td>
+					<td>1726</td>
+					<td>5603</td>
+				</tr>
+				<tr>
+					<td>Inserts</td>
+					<td>9999</td>
+					<td>0</td>
+					<td>0</td>
+					<td>61157</td>
+					<td>139891</td>
+				</tr>
+				<tr>
+					<td>Removes</td>
+					<td>9999</td>
+					<td>0</td>
+					<td>0</td>
+					<td>61157</td>
+					<td>139891</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

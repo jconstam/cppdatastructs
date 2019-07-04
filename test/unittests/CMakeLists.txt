@@ -30,7 +30,10 @@ include_directories( ${UNITTEST_PROJECT_NAME} ${PROJECT_SOURCE_DIR}/../include $
 add_executable( ${UNITTEST_PROJECT_NAME} ${UNITTEST_SOURCES} )
 target_link_libraries( ${UNITTEST_PROJECT_NAME} gtest_main )
 
-add_test( unittests ${UNITTEST_PROJECT_NAME} )
+add_test( unittests 
+          ${UNITTEST_PROJECT_NAME} 
+          --gtest_output=xml:${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_unittests.xml
+          )
 add_test( unittest_coverage_html 
           gcovr 
           --root ${PROJECT_SOURCE_DIR}/.. 
@@ -39,7 +42,7 @@ add_test( unittest_coverage_html
           --print-summary 
           --fail-under-line 100 
           --fail-under-branch 100 
-          --html -o ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}.html
+          --html -o ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_coverage.html
           ${COVERAGE_FLAGS}
           )
 add_test( unittest_coverage_xml
@@ -50,5 +53,5 @@ add_test( unittest_coverage_xml
           --print-summary 
           --fail-under-line 100 
           --fail-under-branch 100 
-          --xml -o ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}.xml
+          --xml -o ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_coverage.xml
           )

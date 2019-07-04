@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include "gifenc.h"
+
 #include "data.hpp"
 #include "sort_insertion.hpp"
 #include "sort_selection.hpp"
@@ -10,13 +11,15 @@
 #include "sort_merge.hpp"
 #include "sort_quick.hpp"
 
+#include "htmlGen.hpp"
+
 using namespace std;
 
 static void generateReadmeImages( )
 {
 	const int count = 1000;
 	const int maxValue = 200;
-	const string folder = "images/readme/";
+	const string folder = "output/readme/";
 
 	cout << "Generating ReadMe Images" << endl;
 
@@ -49,9 +52,120 @@ static void generateReadmeImages( )
 	cout << "\tDone" << endl;
 }
 
+static void generateHTMLReport_PrintSortData( htmlGen& generator, dataStor& data, string name )
+{
+	sort_insertion sort_insert( data );
+	sort_insert.doSort( );
+	sort_selection sort_select( data );
+	sort_select.doSort( );
+	sort_merge sort_merge( data );
+	sort_merge.doSort( );
+	sort_bubble sort_bubble( data );
+	sort_bubble.doSort( );
+	sort_quick sort_quick( data );
+	sort_quick.doSort( );
+
+	generator.openTag( HTML_TAG_DIV );
+	generator.writeTagWithValue( HTML_TAG_H2, name );
+	generator.openTag( HTML_TAG_TABLE );
+	generator.openTag( HTML_TAG_TR );
+	generator.writeTagWithValue( HTML_TAG_TH, "" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Insertion" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Selection" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Bubble" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Merge" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Quick" );
+	generator.closeTag( HTML_TAG_TR );
+	generator.openTag( HTML_TAG_TR );
+	generator.writeTagWithValue( HTML_TAG_TD, "Accesses" );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getAccessCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getAccessCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_bubble.getAccessCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_merge.getAccessCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_quick.getAccessCount( ) ) );
+	generator.closeTag( HTML_TAG_TR );
+	generator.openTag( HTML_TAG_TR );
+	generator.writeTagWithValue( HTML_TAG_TD, "Swaps" );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getSwapCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getSwapCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_bubble.getSwapCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_merge.getSwapCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_quick.getSwapCount( ) ) );
+	generator.closeTag( HTML_TAG_TR );
+	generator.openTag( HTML_TAG_TR );
+	generator.writeTagWithValue( HTML_TAG_TD, "Inserts" );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getInsertCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getInsertCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_bubble.getInsertCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_merge.getInsertCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_quick.getInsertCount( ) ) );
+	generator.closeTag( HTML_TAG_TR );
+	generator.openTag( HTML_TAG_TR );
+	generator.writeTagWithValue( HTML_TAG_TD, "Removes" );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getRemoveCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getRemoveCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_bubble.getRemoveCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_merge.getRemoveCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_quick.getRemoveCount( ) ) );
+	generator.closeTag( HTML_TAG_TR );
+	generator.closeTag( HTML_TAG_TABLE );
+	generator.closeTag( HTML_TAG_DIV );
+}
+
+static void generateHTMLTable_Random( htmlGen& generator, int count )
+{
+	dataStor data;
+
+	data.clear( );
+	data.generate( count, count );
+
+	generateHTMLReport_PrintSortData( generator, data, "Randomized array, " + to_string( count ) + " items" );
+}
+
+static void generateHTMLReport( )
+{
+	htmlGen generator;
+
+	cout << "Generating HTML Report" << endl;
+	cout << "\tCreating header..." << endl;
+	generator.openTag( HTML_TAG_HTML );
+	generator.writeTagWithValue( HTML_TAG_TITLE, "C++ Sorting" );
+	generator.openTag( HTML_TAG_STYLE );
+	generator.write( "table {" );
+	generator.write( "\tborder-collapse: collapse;" );
+	generator.write( "\twidth: 100%;" );
+	generator.write( "}" );
+	generator.write( "table, th, td {" );
+	generator.write( "\tborder: 1px solid black;" );
+	generator.write( "}" );
+	generator.write( "th, td {" );
+	generator.write( "\tpadding: 5px;" );
+	generator.write( "}" );
+	generator.write( "tr:nth-child(even) {" );
+	generator.write( "\tbackground-color: #f2f2f2;" );
+	generator.write( "}" );
+	generator.closeTag( HTML_TAG_STYLE );
+	generator.openTag( HTML_TAG_BODY );
+
+	cout << "\tRandom data (100)..." << endl;
+	generateHTMLTable_Random( generator, 100 );
+	cout << "\tRandom data (1000)..." << endl;
+	generateHTMLTable_Random( generator, 1000 );
+	cout << "\tRandom data (10000)..." << endl;
+	generateHTMLTable_Random( generator, 10000 );
+
+	generator.closeTag( HTML_TAG_BODY );
+	generator.closeTag( HTML_TAG_HTML );
+
+	cout << "\tOutputting file..." << endl;
+	generator.writeFile( "output/test.html" );
+	cout << "\tDone" << endl;
+}
+
 int main( int argc, char* argv[ ] )
 {
 	generateReadmeImages( );
+	generateHTMLReport( );
 
 	return 0;
 }

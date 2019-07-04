@@ -91,6 +91,16 @@ class dataStor
 			return m_accessCount;
 		}
 
+		int getInsertCount( )
+		{
+			return m_insertCount;
+		}
+
+		int getRemoveCount( )
+		{
+			return m_removeCount;
+		}
+
 		bool isSorted( )
 		{
 			for( size_t i = 0U; i < m_data.size( ) - 1U; i++ )
