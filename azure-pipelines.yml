@@ -16,9 +16,6 @@ steps:
    python -m pip install --upgrade pip 
    pip install gcovr
   displayName: 'Install Dependencies'
-# Build main binary
-- script: 'make -j'
-  displayName: 'Make Main'
 # Build tests
 - script: 'make -j test'
   displayName: 'Make Tests'
@@ -33,3 +30,6 @@ steps:
   inputs:
     codeCoverageTool: Cobertura
     summaryFileLocation: build/cppdatastructs/test/unittests/cppdatastructstest_coverage.xml
+# Build and run main binary
+- script: 'make -j run'
+  displayName: 'Make Main'
