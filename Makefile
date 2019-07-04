@@ -11,22 +11,22 @@ BUILD_PATH=${ROOT_PATH}/build
 OUTPUT_PATH=${BUILD_PATH}/${PROJ_NAME}
 OUTPUT_TEST_PATH=${OUTPUT_PATH}/test
 
-.PHONY: build
-build:
-	mkdir -p ${OUTPUT_PATH}
-	cd ${OUTPUT_PATH} && cmake ${SOURCE_PATH} -DBIG_FLAGS=-DBIG_STUFF && $(MAKE) $(MAKEFLAGS)
-
 .PHONY: build_quick
 build_quick:
 	mkdir -p ${OUTPUT_PATH}
 	cd ${OUTPUT_PATH} && cmake ${SOURCE_PATH} -DBIG_FLAGS= && $(MAKE) $(MAKEFLAGS)
 
-.PHONY: run
-run: build
-	${OUTPUT_PATH}/${PROJ_NAME}
-
 .PHONY: run_quick
 run_quick: build_quick
+	${OUTPUT_PATH}/${PROJ_NAME}
+
+.PHONY: build
+build:
+	mkdir -p ${OUTPUT_PATH}
+	cd ${OUTPUT_PATH} && cmake ${SOURCE_PATH} -DBIG_FLAGS=-DBIG_STUFF && $(MAKE) $(MAKEFLAGS)
+
+.PHONY: run
+run: build
 	${OUTPUT_PATH}/${PROJ_NAME}
 
 .PHONY: test

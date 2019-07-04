@@ -12,6 +12,7 @@ set( SOURCES
 
 	${PROJECT_SOURCE_DIR}/main.cpp
 	${PROJECT_SOURCE_DIR}/data.cpp
+	${PROJECT_SOURCE_DIR}/gifData.cpp
 	${PROJECT_SOURCE_DIR}/htmlGen.cpp
 	${PROJECT_SOURCE_DIR}/sort.cpp
 	${PROJECT_SOURCE_DIR}/sort_bubble.cpp

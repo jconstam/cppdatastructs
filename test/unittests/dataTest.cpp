@@ -16,6 +16,9 @@ TEST( DataTest, Constructor )
 
 	EXPECT_EQ( 0, storage.getSwapCount( ) );
 	EXPECT_EQ( 0, storage.getAccessCount( ) );
+	EXPECT_EQ( 0, storage.getRemoveCount( ) );
+	EXPECT_EQ( 0, storage.getInsertCount( ) );
+	EXPECT_EQ( 0, storage.getOpsCount( ) );
 }
 
 TEST( DataTest, Access )
@@ -31,6 +34,9 @@ TEST( DataTest, Access )
 	EXPECT_EQ( 3, storage[ 2 ] );
 	EXPECT_EQ( 3, storage.getAccessCount( ) );
 	EXPECT_EQ( 0, storage.getSwapCount( ) );
+	EXPECT_EQ( 0, storage.getRemoveCount( ) );
+	EXPECT_EQ( 0, storage.getInsertCount( ) );
+	EXPECT_EQ( 3, storage.getOpsCount( ) );
 }
 
 TEST( DataTest, swap )
@@ -49,11 +55,9 @@ TEST( DataTest, swap )
 	EXPECT_EQ( 1, storage[ 2 ] );
 	EXPECT_EQ( 3, storage.getAccessCount( ) );
 	EXPECT_EQ( 2, storage.getSwapCount( ) );
-
-	storage.clear( );
-
-	EXPECT_EQ( 0, storage.getAccessCount( ) );
-	EXPECT_EQ( 0, storage.getSwapCount( ) );
+	EXPECT_EQ( 0, storage.getRemoveCount( ) );
+	EXPECT_EQ( 0, storage.getInsertCount( ) );
+	EXPECT_EQ( 5, storage.getOpsCount( ) );
 }
 
 TEST( DataTest, Remove )
@@ -75,6 +79,12 @@ TEST( DataTest, Remove )
 	storage.remove( 2 );
 	storage.remove( 1 );
 
+	EXPECT_EQ( 0, storage.getSwapCount( ) );
+	EXPECT_EQ( 5, storage.getAccessCount( ) );
+	EXPECT_EQ( 2, storage.getRemoveCount( ) );
+	EXPECT_EQ( 0, storage.getInsertCount( ) );
+	EXPECT_EQ( 7, storage.getOpsCount( ) );
+
 	EXPECT_EQ( 1, storage[ 0 ] );
 	EXPECT_EQ( 4, storage[ 1 ] );
 	EXPECT_EQ( 5, storage[ 2 ] );
@@ -89,6 +99,12 @@ TEST( DataTest, Insert )
 	storage.add( 3 );
 
 	storage.insert( 4, 1 );
+
+	EXPECT_EQ( 0, storage.getSwapCount( ) );
+	EXPECT_EQ( 0, storage.getAccessCount( ) );
+	EXPECT_EQ( 0, storage.getRemoveCount( ) );
+	EXPECT_EQ( 1, storage.getInsertCount( ) );
+	EXPECT_EQ( 1, storage.getOpsCount( ) );
 
 	EXPECT_EQ( 1, storage[ 0 ] );
 	EXPECT_EQ( 4, storage[ 1 ] );
