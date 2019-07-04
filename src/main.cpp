@@ -29,21 +29,21 @@ static void generateReadmeImages( )
 	dataStor test;
 	test.generate( 500, 200 );
 
-	cout << "\tInsertion Sort..." << endl;
-	sort_insertion sort_insert( test );
-	sort_insert.doSortWithGif( folder + "insert.gif", 5 );
+	cout << "\tBubble Sort..." << endl;
+	sort_bubble sort_bubble( test );
+	sort_bubble.doSortWithGif( folder + "bubble.gif", 1000 );
 	
 	cout << "\tSelection Sort..." << endl;
 	sort_selection sort_select( test );
 	sort_select.doSortWithGif( folder + "select.gif", 5 );
 
+	cout << "\tInsertion Sort..." << endl;
+	sort_insertion sort_insert( test );
+	sort_insert.doSortWithGif( folder + "insert.gif", 5 );
+
 	cout << "\tMerge Sort..." << endl;
 	sort_merge sort_merge( test );
 	sort_merge.doSortWithGif( folder + "merge.gif", 10 );
-
-	cout << "\tBubble Sort..." << endl;
-	sort_bubble sort_bubble( test );
-	sort_bubble.doSortWithGif( folder + "bubble.gif", 1000 );
 
 	cout << "\tQuick Sort..." << endl;
 	sort_quick sort_quick( test );
@@ -67,9 +67,11 @@ static void generateHTMLReport_PrintSortData( htmlGen& generator, dataStor& data
 
 	generator.openTag( HTML_TAG_TR );
 	generator.writeTagWithValue( HTML_TAG_TD, name, { "id=rowLead" } );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getOpsCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getOpsCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( int( pow( data.size( ), 2 ) ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( int( data.size( ) * log( data.size( ) ) ) ) );
 	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_bubble.getOpsCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getOpsCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getOpsCount( ) ) );
 	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_merge.getOpsCount( ) ) );
 	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_quick.getOpsCount( ) ) );
 	generator.closeTag( HTML_TAG_TR );
@@ -118,9 +120,11 @@ static void generateHTMLReport( )
 	generator.openTag( HTML_TAG_TABLE );
 	generator.openTag( HTML_TAG_TR );
 	generator.writeTagWithValue( HTML_TAG_TH, "" );
-	generator.writeTagWithValue( HTML_TAG_TH, "Insertion" );
-	generator.writeTagWithValue( HTML_TAG_TH, "Selection" );
+	generator.writeTagWithValue( HTML_TAG_TH, "N^2" );
+	generator.writeTagWithValue( HTML_TAG_TH, "N LOG(N)" );
 	generator.writeTagWithValue( HTML_TAG_TH, "Bubble" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Selection" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Insertion" );
 	generator.writeTagWithValue( HTML_TAG_TH, "Merge" );
 	generator.writeTagWithValue( HTML_TAG_TH, "Quick" );
 	generator.closeTag( HTML_TAG_TR );

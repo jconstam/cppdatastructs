@@ -14,7 +14,7 @@ steps:
 # Update pip and install gcovr
 - script: |
    python -m pip install --upgrade pip 
-   pip install gcovr
+   pip install -r requirements.txt
   displayName: 'Install Dependencies'
 # Build tests
 - script: 'make -j test'
