@@ -99,6 +99,42 @@ static void generateHTMLTable_Random( htmlGen& generator, int count )
 	generateHTMLReport_PrintSortData( generator, data, "Randomized array, " + to_string( count ) + " items" );
 }
 
+static void generateHTMLTable_ReverseSorted( htmlGen& generator, int count )
+{
+	dataStor data;
+
+	data.clear( );
+	for( int i = count; i > 0; i-- )
+	{
+		data.add( i );
+	}
+
+	generateHTMLReport_PrintSortData( generator, data, "Reverse-sorted array, " + to_string( count ) + " items" );
+}
+
+static void generateHTMLTable_Sorted( htmlGen& generator, int count )
+{
+	dataStor data;
+
+	data.clear( );
+	for( int i = 0; i < count; i++ )
+	{
+		data.add( i );
+	}
+
+	generateHTMLReport_PrintSortData( generator, data, "Sorted array, " + to_string( count ) + " items" );
+}
+
+static void generateHTMLTables( htmlGen& generator, int count )
+{
+	cout << "\tSorted (" << count << ")..." << endl;
+	generateHTMLTable_Sorted( generator, count );
+	cout << "\tReverse Sorted (" << count << ")..." << endl;
+	generateHTMLTable_ReverseSorted( generator, count );
+	cout << "\tRandom data (" << count << ")..." << endl;
+	generateHTMLTable_Random( generator, count );
+}
+
 static void generateHTMLReport( )
 {
 	htmlGen generator;
@@ -123,7 +159,7 @@ static void generateHTMLReport( )
 	generator.write( "\ttext-align: left;" );
 	generator.write( "}" );
 	generator.write( "tr:nth-child(even) {" );
-	generator.write( "\tbackground-color: #f2f2f2;" );
+	generator.write( "\tbackground-color: #e0e0e0;" );
 	generator.write( "}" );
 	generator.closeTag( HTML_TAG_STYLE );
 	generator.openTag( HTML_TAG_BODY );
@@ -140,15 +176,11 @@ static void generateHTMLReport( )
 	generator.writeTagWithValue( HTML_TAG_TH, "Merge", { "colspan=2" } );
 	generator.writeTagWithValue( HTML_TAG_TH, "Quick", { "colspan=2" } );
 	generator.closeTag( HTML_TAG_TR );
-	cout << "\tRandom data (100)..." << endl;
-	generateHTMLTable_Random( generator, 100 );
-	cout << "\tRandom data (1000)..." << endl;
-	generateHTMLTable_Random( generator, 1000 );
+	generateHTMLTables( generator, 100 );
+	generateHTMLTables( generator, 1000 );
 	#ifdef BIG_STUFF
-	cout << "\tRandom data (10000)..." << endl;
-	generateHTMLTable_Random( generator, 10000 );
-	cout << "\tRandom data (100000)..." << endl;
-	generateHTMLTable_Random( generator, 100000 );
+	generateHTMLTables( generator, 10000 );
+	generateHTMLTables( generator, 100000 );
 	#endif
 	generator.closeTag( HTML_TAG_TABLE );
 	generator.closeTag( HTML_TAG_DIV );
