@@ -3,30 +3,27 @@
 pool:
   name: Hosted Ubuntu 1604
 
-jobs:
-  - job: Validate
-    steps:
-    - task: UsePythonVersion@0
-      displayName: 'Use Python 3.6'
-      inputs:
-        versionSpec: 3.6
-    - script: |
-       python -m pip install --upgrade pip 
-       pip install -r requirements.txt
-      displayName: 'Install Dependencies'
-    - script: 'make -j test'
-      displayName: 'Make Tests'
-    - task: PublishTestResults@2
-      inputs:
-        testResultsFormat: 'JUnit'
-        testResultsFiles: 'build/cppdatastructs/test/unittests/cppdatastructstest_unittests.xml'
-    - task: PublishCodeCoverageResults@1
-      displayName: 'Publish Test Coverage'
-      inputs:
-        codeCoverageTool: Cobertura
-        summaryFileLocation: build/cppdatastructs/test/unittests/cppdatastructstest_coverage.xml
-  - job: Run
-    timeoutInMinutes: 360
-    steps:
-    - script: 'make -j run'
-      displayName: 'Make Main'
+job: Validate
+  - task: UsePythonVersion@0
+    displayName: 'Use Python 3.6'
+    inputs:
+      versionSpec: 3.6
+  - script: |
+     python -m pip install --upgrade pip 
+     pip install -r requirements.txt
+    displayName: 'Install Dependencies'
+  - script: 'make -j test'
+    displayName: 'Make Tests'
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'build/cppdatastructs/test/unittests/cppdatastructstest_unittests.xml'
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish Test Coverage'
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: build/cppdatastructs/test/unittests/cppdatastructstest_coverage.xml
+job: Run
+  timeoutInMinutes: 360
+  - script: 'make -j run'
+    displayName: 'Make Main'
