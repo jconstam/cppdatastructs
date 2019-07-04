@@ -1,36 +1,32 @@
 # Azure DevOps CI Configuration
 
-# Use standard Ubuntu 16.04 host
 pool:
   name: Hosted Ubuntu 1604
 
-# Execution Steps
-steps:
-# Use Python 3.6
-- task: UsePythonVersion@0
-  displayName: 'Use Python 3.6'
-  inputs:
-    versionSpec: 3.6
-# Update pip and install gcovr
-- script: |
-   python -m pip install --upgrade pip 
-   pip install -r requirements.txt
-  displayName: 'Install Dependencies'
-# Build tests
-- script: 'make -j test'
-  displayName: 'Make Tests'
-# Publish test report
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: 'build/cppdatastructs/test/unittests/cppdatastructstest_unittests.xml'
-# Publish test coverage
-- task: PublishCodeCoverageResults@1
-  displayName: 'Publish Test Coverage'
-  inputs:
-    codeCoverageTool: Cobertura
-    summaryFileLocation: build/cppdatastructs/test/unittests/cppdatastructstest_coverage.xml
-# Build and run main binary
-- script: 'make -j run'
-  displayName: 'Make Main'
-  timeoutInMinutes: 600
+jobs:
+  - job: Validate
+    steps:
+    - task: UsePythonVersion@0
+      displayName: 'Use Python 3.6'
+      inputs:
+        versionSpec: 3.6
+    - script: |
+       python -m pip install --upgrade pip 
+       pip install -r requirements.txt
+      displayName: 'Install Dependencies'
+    - script: 'make -j test'
+      displayName: 'Make Tests'
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'build/cppdatastructs/test/unittests/cppdatastructstest_unittests.xml'
+    - task: PublishCodeCoverageResults@1
+      displayName: 'Publish Test Coverage'
+      inputs:
+        codeCoverageTool: Cobertura
+        summaryFileLocation: build/cppdatastructs/test/unittests/cppdatastructstest_coverage.xml
+  - job: Run
+    timeoutInMinutes: 360
+    steps:
+    - script: 'make -j run'
+      displayName: 'Make Main'
