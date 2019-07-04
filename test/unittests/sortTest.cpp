@@ -33,13 +33,6 @@ class SortTest : public ::testing::Test
 
 dataStor SortTest::m_data;
 
-TEST_F( SortTest, Base )
-{
-	sortBase sorter( m_data );
-	sorter.doSort( );
-	EXPECT_NE( true, sorter.isSorted( ) );
-}
-
 TEST_F( SortTest, Insertion )
 {
 	sort_insertion sorter( m_data );
