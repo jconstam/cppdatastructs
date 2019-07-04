@@ -33,3 +33,4 @@ steps:
 # Build and run main binary
 - script: 'make -j run'
   displayName: 'Make Main'
+  timeoutInMinutes: 600

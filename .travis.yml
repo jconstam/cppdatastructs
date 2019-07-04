@@ -9,7 +9,7 @@ addons:
       python-pip
 
 install:
-  - pip install -r requirements.txt
+  - pip install --user -r requirements.txt
 
 script:
   - make -j test  
