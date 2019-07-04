@@ -11,7 +11,14 @@ set( SOURCES
 	${PROJECT_SOURCE_DIR}/../gif/gifenc.c
 
 	${PROJECT_SOURCE_DIR}/main.cpp
+	${PROJECT_SOURCE_DIR}/data.cpp
 	${PROJECT_SOURCE_DIR}/htmlGen.cpp
+	${PROJECT_SOURCE_DIR}/sort.cpp
+	${PROJECT_SOURCE_DIR}/sort_bubble.cpp
+	${PROJECT_SOURCE_DIR}/sort_insertion.cpp
+	${PROJECT_SOURCE_DIR}/sort_merge.cpp
+	${PROJECT_SOURCE_DIR}/sort_quick.cpp
+	${PROJECT_SOURCE_DIR}/sort_selection.cpp
 )
 
 include_directories( ${PROJECT_NAME_LIBRARY} ${PROJECT_SOURCE_DIR}/../include ${PROJECT_SOURCE_DIR}/../gif )

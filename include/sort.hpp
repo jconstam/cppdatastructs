@@ -8,73 +8,20 @@
 class sortBase
 {
 	public:
-		sortBase( dataStor data )
-		{
-			m_data = data.replicate( );
-		}
+		sortBase( dataStor data );
 
-		bool isSorted( )
-		{
-			return m_data.isSorted( );
-		}
+		bool isSorted( );
+		int getSwapCount( );
+		int getAccessCount( );
+		int getInsertCount( );
+		int getRemoveCount( );
+		int getOpsCount( );
+		double getSortTime( );
 
-		int getSwapCount( )
-		{
-			return m_data.getSwapCount( );
-		}
-		
-		int getAccessCount( )
-		{
-			return m_data.getAccessCount( );
-		}
-
-		int getInsertCount( )
-		{
-			return m_data.getInsertCount( );
-		}
-
-		int getRemoveCount( )
-		{
-			return m_data.getRemoveCount( );
-		}
-
-		int getOpsCount( )
-		{
-			return m_data.getOpsCount( );
-		}
-
-		double getSortTime( )
-		{
-			return sortTime.count( );
-		}
-
-		void outputGif( )
-		{
-			m_data.outputGif( );
-		}
-
-		void initGif( std::string fileName, int speedUpFactor )
-		{
-			m_data.initGif( fileName, speedUpFactor );
-		}
-
-		void doSortWithGif( std::string fileName, int speedUpFactor )
-		{
-			initGif( fileName, speedUpFactor );
-			doSort( );
-			outputGif( );
-		}
-
-		void doSort( )
-		{
-			auto start = std::chrono::high_resolution_clock::now( );
-
-			actualSort( );
-
-			auto end = std::chrono::high_resolution_clock::now( );
-
-			sortTime = std::chrono::duration_cast< std::chrono::nanoseconds >( end - start );
-		}
+		void outputGif( );
+		void initGif( std::string fileName, int speedUpFactor );
+		void doSortWithGif( std::string fileName, int speedUpFactor );
+		void doSort( );
 
 	protected:
 		dataStor m_data;
