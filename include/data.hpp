@@ -101,6 +101,11 @@ class dataStor
 			return m_removeCount;
 		}
 
+		int getOpsCount( )
+		{
+			return m_swapCount + m_accessCount + m_insertCount + m_removeCount;
+		}
+
 		bool isSorted( )
 		{
 			for( size_t i = 0U; i < m_data.size( ) - 1U; i++ )

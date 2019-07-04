@@ -36,6 +36,11 @@ class sortBase
 			return m_data.getRemoveCount( );
 		}
 
+		int getOpsCount( )
+		{
+			return m_data.getOpsCount( );
+		}
+
 		void outputGif( )
 		{
 			m_data.outputGif( );

@@ -65,51 +65,14 @@ static void generateHTMLReport_PrintSortData( htmlGen& generator, dataStor& data
 	sort_quick sort_quick( data );
 	sort_quick.doSort( );
 
-	generator.openTag( HTML_TAG_DIV );
-	generator.writeTagWithValue( HTML_TAG_H2, name );
-	generator.openTag( HTML_TAG_TABLE );
 	generator.openTag( HTML_TAG_TR );
-	generator.writeTagWithValue( HTML_TAG_TH, "" );
-	generator.writeTagWithValue( HTML_TAG_TH, "Insertion" );
-	generator.writeTagWithValue( HTML_TAG_TH, "Selection" );
-	generator.writeTagWithValue( HTML_TAG_TH, "Bubble" );
-	generator.writeTagWithValue( HTML_TAG_TH, "Merge" );
-	generator.writeTagWithValue( HTML_TAG_TH, "Quick" );
+	generator.writeTagWithValue( HTML_TAG_TD, name );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getOpsCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getOpsCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_bubble.getOpsCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_merge.getOpsCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_quick.getOpsCount( ) ) );
 	generator.closeTag( HTML_TAG_TR );
-	generator.openTag( HTML_TAG_TR );
-	generator.writeTagWithValue( HTML_TAG_TD, "Accesses" );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getAccessCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getAccessCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_bubble.getAccessCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_merge.getAccessCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_quick.getAccessCount( ) ) );
-	generator.closeTag( HTML_TAG_TR );
-	generator.openTag( HTML_TAG_TR );
-	generator.writeTagWithValue( HTML_TAG_TD, "Swaps" );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getSwapCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getSwapCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_bubble.getSwapCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_merge.getSwapCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_quick.getSwapCount( ) ) );
-	generator.closeTag( HTML_TAG_TR );
-	generator.openTag( HTML_TAG_TR );
-	generator.writeTagWithValue( HTML_TAG_TD, "Inserts" );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getInsertCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getInsertCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_bubble.getInsertCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_merge.getInsertCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_quick.getInsertCount( ) ) );
-	generator.closeTag( HTML_TAG_TR );
-	generator.openTag( HTML_TAG_TR );
-	generator.writeTagWithValue( HTML_TAG_TD, "Removes" );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_insert.getRemoveCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_select.getRemoveCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_bubble.getRemoveCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_merge.getRemoveCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sort_quick.getRemoveCount( ) ) );
-	generator.closeTag( HTML_TAG_TR );
-	generator.closeTag( HTML_TAG_TABLE );
-	generator.closeTag( HTML_TAG_DIV );
 }
 
 static void generateHTMLTable_Random( htmlGen& generator, int count )
@@ -147,12 +110,25 @@ static void generateHTMLReport( )
 	generator.closeTag( HTML_TAG_STYLE );
 	generator.openTag( HTML_TAG_BODY );
 
+	generator.openTag( HTML_TAG_DIV );
+	generator.writeTagWithValue( HTML_TAG_H2, name );
+	generator.openTag( HTML_TAG_TABLE );
+	generator.openTag( HTML_TAG_TR );
+	generator.writeTagWithValue( HTML_TAG_TH, "" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Insertion" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Selection" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Bubble" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Merge" );
+	generator.writeTagWithValue( HTML_TAG_TH, "Quick" );
+	generator.closeTag( HTML_TAG_TR );
 	cout << "\tRandom data (100)..." << endl;
 	generateHTMLTable_Random( generator, 100 );
 	cout << "\tRandom data (1000)..." << endl;
 	generateHTMLTable_Random( generator, 1000 );
-	cout << "\tRandom data (10000)..." << endl;
-	generateHTMLTable_Random( generator, 10000 );
+	//cout << "\tRandom data (10000)..." << endl;
+	//generateHTMLTable_Random( generator, 10000 );
+	generator.closeTag( HTML_TAG_TABLE );
+	generator.closeTag( HTML_TAG_DIV );
 
 	generator.closeTag( HTML_TAG_BODY );
 	generator.closeTag( HTML_TAG_HTML );
