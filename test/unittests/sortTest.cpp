@@ -29,91 +29,53 @@ class SortTest : public ::testing::Test
 		{
 
 		}
+
+		template <typename T>
+		static void TestSort( )
+		{
+			T sorter = T( m_data );
+			sorter.doSort( );
+			ASSERT_EQ( true, sorter.isSorted( ) );
+			EXPECT_GT( sorter.getSortTime( ), 0.0 );
+			EXPECT_GE( sorter.getSwapCount( ), 0 );
+			EXPECT_GE( sorter.getAccessCount( ), 0 );
+			EXPECT_GE( sorter.getInsertCount( ), 0 );
+			EXPECT_GE( sorter.getRemoveCount( ), 0 );
+			EXPECT_GT( sorter.getOpsCount( ), 0 );
+
+			T sorterWithGif = T( m_data );
+			sorterWithGif.doSortWithGif( "test.gif", 100 );
+			ASSERT_EQ( true, sorterWithGif.isSorted( ) );
+
+			struct stat buffer;
+			ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
+			ASSERT_EQ( 0, remove( "test.gif" ) );
+		}
 };
 
 dataStor SortTest::m_data;
 
 TEST_F( SortTest, Insertion )
 {
-	sort_insertion sorter( m_data );
-	sorter.doSort( );
-	EXPECT_EQ( true, sorter.isSorted( ) );
-}
-TEST_F( SortTest, InsertionWithGif )
-{
-	sort_insertion sorter( m_data );
-	sorter.doSortWithGif( "test.gif", 100 );
-	EXPECT_EQ( true, sorter.isSorted( ) );
-
-	struct stat buffer;
-	ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
-	EXPECT_EQ( 0, remove( "test.gif" ) );
+	TestSort<sort_insertion>( );
 }
 
 TEST_F( SortTest, Selection )
 {
-	sort_selection sorter( m_data );
-	sorter.doSort( );
-	EXPECT_EQ( true, sorter.isSorted( ) );
-}
-TEST_F( SortTest, SelectionWithGif )
-{
-	sort_selection sorter( m_data );
-	sorter.doSortWithGif( "test.gif", 100 );
-	EXPECT_EQ( true, sorter.isSorted( ) );
-
-	struct stat buffer;
-	ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
-	EXPECT_EQ( 0, remove( "test.gif" ) );
+	TestSort<sort_selection>( );
 }
 
 TEST_F( SortTest, Bubble )
 {
-	sort_bubble sorter( m_data );
-	sorter.doSort( );
-	EXPECT_EQ( true, sorter.isSorted( ) );
-}
-TEST_F( SortTest, BubbleWithGif )
-{
-	sort_bubble sorter( m_data );
-	sorter.doSortWithGif( "test.gif", 100 );
-	EXPECT_EQ( true, sorter.isSorted( ) );
-
-	struct stat buffer;
-	ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
-	EXPECT_EQ( 0, remove( "test.gif" ) );
+	TestSort<sort_bubble>( );
 }
 
 TEST_F( SortTest, Merge )
 {
-	sort_merge sorter( m_data );
-	sorter.doSort( );
-	EXPECT_EQ( true, sorter.isSorted( ) );
-}
-TEST_F( SortTest, MergeWithGif )
-{
-	sort_merge sorter( m_data );
-	sorter.doSortWithGif( "test.gif", 100 );
-	EXPECT_EQ( true, sorter.isSorted( ) );
-
-	struct stat buffer;
-	ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
-	EXPECT_EQ( 0, remove( "test.gif" ) );
+	TestSort<sort_merge>( );
 }
 
 TEST_F( SortTest, Quick )
 {
-	sort_quick sorter( m_data );
-	sorter.doSort( );
-	EXPECT_EQ( true, sorter.isSorted( ) );
-}
-TEST_F( SortTest, QuickWithGif )
-{
-	sort_quick sorter( m_data );
-	sorter.doSortWithGif( "test.gif", 100 );
-	EXPECT_EQ( true, sorter.isSorted( ) );
-
-	struct stat buffer;
-	ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
-	EXPECT_EQ( 0, remove( "test.gif" ) );
+	TestSort<sort_quick>( );
 }
