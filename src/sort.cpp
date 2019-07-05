@@ -2,6 +2,16 @@
 
 sortBase::sortBase( dataStor data )
 {
+	changeData( data );
+}
+
+sortBase::~sortBase( )
+{
+	
+}
+
+void sortBase::changeData( dataStor data )
+{
 	m_data = data.replicate( );
 }
 

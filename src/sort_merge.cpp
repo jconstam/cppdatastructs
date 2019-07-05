@@ -7,6 +7,11 @@ sort_merge::sort_merge( dataStor data ) : sortBase( data )
 
 }
 
+sort_merge::~sort_merge( )
+{
+	
+}
+
 void sort_merge::actualSort( )
 {
 	merge( 0, m_data.size( ) - 1 );
@@ -44,4 +49,9 @@ void sort_merge::merge( int startIndex, int endIndex )
 		}
 		lowIndex++;
 	}
+}
+
+std::string sort_merge::getName( )
+{
+	return "Merge";
 }

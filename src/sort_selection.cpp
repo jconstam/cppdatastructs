@@ -5,6 +5,11 @@ sort_selection::sort_selection( dataStor data ) : sortBase( data )
 
 }
 
+sort_selection::~sort_selection( )
+{
+	
+}
+
 void sort_selection::actualSort( )
 {
 	for( size_t i = 0; i < m_data.size( ); i++ )
@@ -23,4 +28,9 @@ void sort_selection::actualSort( )
 
 		m_data.swap( i, minValueIndex );
 	}
+}
+
+std::string sort_selection::getName( )
+{
+	return "Selection";
 }

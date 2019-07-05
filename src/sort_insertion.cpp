@@ -5,6 +5,11 @@ sort_insertion::sort_insertion( dataStor data ) : sortBase( data )
 
 }
 
+sort_insertion::~sort_insertion( )
+{
+	
+}
+
 void sort_insertion::actualSort( )
 {
 	for( int i = 1; i < ( int ) m_data.size( ); i++ )
@@ -25,4 +30,9 @@ void sort_insertion::actualSort( )
 			m_data.insert( newValue, i );
 		}
 	}
+}
+
+std::string sort_insertion::getName( )
+{
+	return "Insertion";
 }

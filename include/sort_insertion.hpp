@@ -7,8 +7,10 @@ class sort_insertion : public sortBase
 {
 	public:
 		sort_insertion( dataStor data );
+		~sort_insertion( );
 
 		void actualSort( );
+		std::string getName( );
 };
 
 #endif

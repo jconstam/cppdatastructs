@@ -7,8 +7,10 @@ class sort_selection : public sortBase
 {
 	public:
 		sort_selection( dataStor data );
+		~sort_selection( );
 
 		void actualSort( );
+		std::string getName( );
 };
 
 #endif

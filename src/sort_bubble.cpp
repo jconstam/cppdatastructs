@@ -5,6 +5,11 @@ sort_bubble::sort_bubble( dataStor data ) : sortBase( data )
 
 }
 
+sort_bubble::~sort_bubble( )
+{
+	
+}
+
 void sort_bubble::actualSort( )
 {
 	size_t counter = 1;
@@ -27,4 +32,9 @@ void sort_bubble::actualSort( )
 			break;
 		}
 	}
+}
+
+std::string sort_bubble::getName( )
+{
+	return "Bubble";
 }

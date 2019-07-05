@@ -7,8 +7,10 @@ class sort_quick : public sortBase
 {
 	public:
 		sort_quick( dataStor data );
+		~sort_quick( );
 
 		void actualSort( );
+		std::string getName( );
 
 	private:
 		void quick( int startIndex, int endIndex, int depth );

@@ -5,6 +5,11 @@ sort_quick::sort_quick( dataStor data ) : sortBase( data )
 
 }
 
+sort_quick::~sort_quick( )
+{
+	
+}
+
 void sort_quick::actualSort( )
 {
 	srand( time( 0 ) );
@@ -61,4 +66,9 @@ int sort_quick::pickPivotIndex( int startIndex, int endIndex )
 	}
 
 	return endIndex;
+}
+
+std::string sort_quick::getName( )
+{
+	return "Quick";
 }

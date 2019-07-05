@@ -36,6 +36,7 @@ class SortTest : public ::testing::Test
 			T sorter = T( m_data );
 			sorter.doSort( );
 			ASSERT_EQ( true, sorter.isSorted( ) );
+			EXPECT_STRNE( "", sorter.getName( ).c_str( ) );
 			EXPECT_GT( sorter.getSortTime( ), 0.0 );
 			EXPECT_GE( sorter.getSwapCount( ), 0 );
 			EXPECT_GE( sorter.getAccessCount( ), 0 );

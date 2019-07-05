@@ -7,8 +7,10 @@ class sort_bubble : public sortBase
 {
 	public:
 		sort_bubble( dataStor data );
+		~sort_bubble( );
 		
 		void actualSort( );
+		std::string getName( );
 };
 
 #endif
