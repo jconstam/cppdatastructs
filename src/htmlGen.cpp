@@ -103,13 +103,13 @@ void htmlGen::printData( )
 	cout << data.str( );
 }
 
+// GCOV_EXCL_START
+// GCOVR_EXCL_START
 void htmlGen::writeFile( string fileName )
 {
-	// GCOV_EXCL_START
-	// GCOVR_EXCL_START
 	ofstream fileOut ( fileName );
 	fileOut << data.str( );
 	fileOut.close( );
-	// GCOVR_EXCL_STOP
-	// GCOV_EXCL_STOP
 }
+// GCOVR_EXCL_STOP
+// GCOV_EXCL_STOP
