@@ -29,6 +29,7 @@ set( UNITTEST_SOURCES
 
     ${UNITTEST_ROOT}/dataTest.cpp
     ${UNITTEST_ROOT}/gifTest.cpp
+    ${UNITTEST_ROOT}/htmlGenTest.cpp
     ${UNITTEST_ROOT}/sortTest.cpp
 )
 

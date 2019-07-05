@@ -19,6 +19,11 @@ const string htmlGen::tagList[ HTML_TAG_COUNT ] =
 	"p"
 };
 
+htmlGen::htmlGen( )
+{
+	depth = 0;
+}
+
 void htmlGen::openTag( HTML_TAG tag, vector<string> properties, bool newLineAfter )
 {
 	writeTag( tag, true, false, properties, newLineAfter );
@@ -93,7 +98,7 @@ void htmlGen::writeDepth( )
 
 void htmlGen::printData( )
 {
-	cout << data.str( ) << endl;
+	cout << data.str( );
 }
 
 void htmlGen::writeFile( string fileName )

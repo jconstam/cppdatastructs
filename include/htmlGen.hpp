@@ -29,10 +29,7 @@ typedef enum
 class htmlGen
 {
 	public:
-		htmlGen( )
-		{
-			depth = 0;
-		}
+		htmlGen( );
 
 		void openTag( HTML_TAG tag, std::vector<std::string> properties = {}, bool newLineAfter = true );
 		void closeTag( HTML_TAG tag, bool newLineAfter = true );

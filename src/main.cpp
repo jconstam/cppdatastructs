@@ -181,7 +181,6 @@ static void generateHTMLReport( )
 	generateHTMLTables( generator, 1000 );
 	#ifdef BIG_STUFF
 	generateHTMLTables( generator, 10000 );
-	generateHTMLTables( generator, 100000 );
 	#endif
 	generator.closeTag( HTML_TAG_TABLE );
 	generator.closeTag( HTML_TAG_DIV );
