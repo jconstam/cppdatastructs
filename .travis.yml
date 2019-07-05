@@ -13,4 +13,4 @@ install:
 
 script:
   - make -j test
-  - travis_wait 600 make -j run
+  - make -j run
