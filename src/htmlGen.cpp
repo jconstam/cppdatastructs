@@ -104,12 +104,10 @@ void htmlGen::printData( )
 }
 
 // GCOV_EXCL_START
-// GCOVR_EXCL_START
 void htmlGen::writeFile( string fileName )
 {
 	ofstream fileOut ( fileName );
 	fileOut << data.str( );
 	fileOut.close( );
 }
-// GCOVR_EXCL_STOP
 // GCOV_EXCL_STOP

@@ -47,7 +47,8 @@ add_test( unittests
 add_test( unittest_coverage_html 
           gcovr 
           --root ${PROJECT_SOURCE_DIR}/.. 
-          --exclude .*test.* 
+          --exclude .*test.*
+          --exclude-unreachable-branches 
           --sort-percentage 
           --print-summary 
           --fail-under-line 100 
@@ -59,6 +60,7 @@ add_test( unittest_coverage_xml
           gcovr
           --root ${PROJECT_SOURCE_DIR}/.. 
           --exclude .*test.* 
+          --exclude-unreachable-branches
           --sort-percentage 
           --print-summary 
           --fail-under-line 100 
