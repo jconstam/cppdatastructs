@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "htmlGen.hpp"
 
 using namespace std;
