@@ -8,6 +8,7 @@
 #include "gifenc.h"
 
 #include "data.hpp"
+#include "sort_collection.hpp"
 #include "sort_insertion.hpp"
 #include "sort_selection.hpp"
 #include "sort_bubble.hpp"
@@ -17,26 +18,6 @@
 #include "htmlGen.hpp"
 
 using namespace std;
-
-static map<string, sortBase*> getSorters( dataStor temp )
-{
-	return map<string, sortBase*>
-	{ 
-		{ "Bubble", new sort_bubble( temp ) },
-		{ "Selection", new sort_selection( temp ) },
-		{ "Insertion", new sort_insertion( temp ) },
-		{ "Merge", new sort_merge( temp ) },
-		{ "Quick", new sort_quick( temp ) }
-	};
-}
-
-static void cleanSorters( map<string, sortBase*> sorters )
-{
-	for( map<string, sortBase*>::iterator it = sorters.begin( ); it != sorters.end( ); it++ )
-	{
-		delete it->second;
-	}
-}
 
 static void generateReadmeImages( )
 {
@@ -53,43 +34,43 @@ static void generateReadmeImages( )
 	dataStor test;
 	test.generate( count, maxValue );
 
-	map<string, sortBase*> sorters = getSorters( test );
+	sortCollection* sorters = new sortCollection( test );
 
-	for( map<string, sortBase*>::iterator it = sorters.begin( ); it != sorters.end( ); it++ )
-	{
-		cout << "\t" << it->first << " Sort..." << endl;
-		it->second->doSortWithGif( folder + "bubble.gif", 1000 );
-		cout << "\t\tTook " << it->second->getSortTime( ) << " seconds" << endl;
-	}
+	sorters->doSortWithGif( "Bubble", folder + "bubble.gif", 1000 );
+	sorters->doSortWithGif( "Selection", folder + "selection.gif", 5 );
+	sorters->doSortWithGif( "Insertion", folder + "insertion.gif", 5 );
+	sorters->doSortWithGif( "Merge", folder + "merge.gif", 10 );
+	sorters->doSortWithGif( "Quick", folder + "quick.gif", 50 );
 
-	cleanSorters( sorters );
+	delete sorters;
 
 	cout << "\tDone" << endl;
 }
 
+static void generateHTMLTable_PrintSortResult( htmlGen& generator, sortCollection* sorters, string name )
+{
+	sortBase* sorter = sorters->getSorter( name );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorter->getOpsCount( ) ) );
+	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorter->getSortTime( ) ) );
+}
+
 static void generateHTMLReport_PrintSortData( htmlGen& generator, dataStor& data, string name )
 {
-	map<string, sortBase*> sorters = getSorters( data );
-	for( map<string, sortBase*>::iterator it = sorters.begin( ); it != sorters.end( ); it++ )
-	{
-		it->second->doSort( );
-	}
+	sortCollection* sorters = new sortCollection( data );
+	sorters->doSortAll( );
 
 	generator.openTag( HTML_TAG_TR );
 	generator.writeTagWithValue( HTML_TAG_TD, name, { "id=rowLead" } );
 	generator.writeTagWithValue( HTML_TAG_TD, to_string( int( pow( data.size( ), 2 ) ) ) );
 	generator.writeTagWithValue( HTML_TAG_TD, to_string( int( data.size( ) * log( data.size( ) ) ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorters[ "Bubble" ]->getOpsCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorters[ "Bubble" ]->getSortTime( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorters[ "Selection" ]->getOpsCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorters[ "Selection" ]->getSortTime( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorters[ "Insertion" ]->getOpsCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorters[ "Insertion" ]->getSortTime( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorters[ "Merge" ]->getOpsCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorters[ "Merge" ]->getSortTime( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorters[ "Quick" ]->getOpsCount( ) ) );
-	generator.writeTagWithValue( HTML_TAG_TD, to_string( sorters[ "Quick" ]->getSortTime( ) ) );
+	generateHTMLTable_PrintSortResult( generator, sorters, "Bubble" );
+	generateHTMLTable_PrintSortResult( generator, sorters, "Selection" );
+	generateHTMLTable_PrintSortResult( generator, sorters, "Insertion" );
+	generateHTMLTable_PrintSortResult( generator, sorters, "Merge" );
+	generateHTMLTable_PrintSortResult( generator, sorters, "Quick" );
 	generator.closeTag( HTML_TAG_TR );
+
+	delete sorters;
 }
 
 static void generateHTMLTable_Random( htmlGen& generator, int count )
