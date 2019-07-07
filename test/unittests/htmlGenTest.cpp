@@ -172,8 +172,6 @@ TEST_F( HTMLGenTest, OpenCloseTagNested )
 	TestPrintedOutput( generator, "<html>\n\t<body>\n\t</body>\n</html>\n" );
 }
 
-
-
 TEST_F( HTMLGenTest, OpenCloseTagWithProperties )
 {
 	htmlGen generator;

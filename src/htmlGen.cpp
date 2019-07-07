@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// GCOV_EXCL_START
 const string htmlGen::tagList[ HTML_TAG_COUNT ] =
 {
 	"html",
@@ -20,6 +21,7 @@ const string htmlGen::tagList[ HTML_TAG_COUNT ] =
 	"style",
 	"p"
 };
+// GCOV_EXCL_STOP
 
 htmlGen::htmlGen( )
 {
