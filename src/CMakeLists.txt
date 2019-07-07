@@ -11,10 +11,10 @@ set( SOURCES
 	${PROJECT_SOURCE_DIR}/../gif/gifenc.c
 
 	${PROJECT_SOURCE_DIR}/main.cpp
-	${PROJECT_SOURCE_DIR}/data.cpp
 	${PROJECT_SOURCE_DIR}/gifData.cpp
 	${PROJECT_SOURCE_DIR}/htmlGen.cpp
 
+	${PROJECT_SOURCE_DIR}/sort/dataStor.cpp
 	${PROJECT_SOURCE_DIR}/sort/sort.cpp
 	${PROJECT_SOURCE_DIR}/sort/sort_collection.cpp
 	${PROJECT_SOURCE_DIR}/sort/sort_bubble.cpp

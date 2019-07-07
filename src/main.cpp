@@ -7,7 +7,7 @@
 
 #include "gifenc.h"
 
-#include "data.hpp"
+#include "sort/dataStor.hpp"
 #include "sort/sort_collection.hpp"
 
 #include "htmlGen.hpp"

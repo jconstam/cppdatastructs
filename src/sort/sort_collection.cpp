@@ -1,6 +1,6 @@
 #include "sort/sort_collection.hpp"
 
-#include "data.hpp"
+#include "sort/dataStor.hpp"
 
 #include "sort/sort.hpp"
 #include "sort/sort_bubble.hpp"

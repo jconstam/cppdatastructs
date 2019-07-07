@@ -1,5 +1,5 @@
-#ifndef DATA_HPP__
-#define DATA_HPP__
+#ifndef DATA_STOR_HPP__
+#define DATA_STOR_HPP__
 
 #include <vector>
 #include <cstdlib>

@@ -17,9 +17,9 @@ add_subdirectory( ${CMAKE_CURRENT_BINARY_DIR}/googletest-src ${CMAKE_CURRENT_BIN
 
 set( UNITTEST_SOURCES
     ${GIF_ROOT}/gifenc.c
-    ${SOURCES_ROOT}/data.cpp
     ${SOURCES_ROOT}/htmlGen.cpp
     ${SOURCES_ROOT}/gifData.cpp
+    ${SOURCES_ROOT}/sort/dataStor.cpp
     ${SOURCES_ROOT}/sort/sort.cpp
     ${SOURCES_ROOT}/sort/sort_bubble.cpp
     ${SOURCES_ROOT}/sort/sort_insertion.cpp

@@ -4,7 +4,7 @@
 #include <chrono>
 #include <string>
 
-#include "data.hpp"
+#include "sort/dataStor.hpp"
 
 class sortBase
 {

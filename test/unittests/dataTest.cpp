@@ -6,7 +6,7 @@
 
 #include <sys/stat.h>
 
-#include "data.hpp"
+#include "sort/dataStor.hpp"
 
 using namespace std;
 

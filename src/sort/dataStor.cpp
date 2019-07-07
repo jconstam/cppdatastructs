@@ -1,4 +1,4 @@
-#include "data.hpp"
+#include "sort/dataStor.hpp"
 
 dataStor::dataStor( )
 {
