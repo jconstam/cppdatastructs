@@ -8,12 +8,7 @@
 #include "gifenc.h"
 
 #include "data.hpp"
-#include "sort_collection.hpp"
-#include "sort_insertion.hpp"
-#include "sort_selection.hpp"
-#include "sort_bubble.hpp"
-#include "sort_merge.hpp"
-#include "sort_quick.hpp"
+#include "sort/sort_collection.hpp"
 
 #include "htmlGen.hpp"
 

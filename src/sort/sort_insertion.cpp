@@ -1,4 +1,4 @@
-#include "sort_insertion.hpp"
+#include "sort/sort_insertion.hpp"
 
 sort_insertion::sort_insertion( dataStor data ) : sortBase( data )
 {

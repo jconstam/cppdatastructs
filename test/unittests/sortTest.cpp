@@ -1,11 +1,11 @@
 #include "gtest/gtest.h"
 
-#include "sort.hpp"
-#include "sort_insertion.hpp"
-#include "sort_selection.hpp"
-#include "sort_bubble.hpp"
-#include "sort_merge.hpp"
-#include "sort_quick.hpp"
+#include "sort/sort.hpp"
+#include "sort/sort_insertion.hpp"
+#include "sort/sort_selection.hpp"
+#include "sort/sort_bubble.hpp"
+#include "sort/sort_merge.hpp"
+#include "sort/sort_quick.hpp"
 
 class SortTest : public ::testing::Test 
 {

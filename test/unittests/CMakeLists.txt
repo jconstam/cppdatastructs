@@ -20,12 +20,12 @@ set( UNITTEST_SOURCES
     ${SOURCES_ROOT}/data.cpp
     ${SOURCES_ROOT}/htmlGen.cpp
     ${SOURCES_ROOT}/gifData.cpp
-    ${SOURCES_ROOT}/sort.cpp
-    ${SOURCES_ROOT}/sort_bubble.cpp
-    ${SOURCES_ROOT}/sort_insertion.cpp
-    ${SOURCES_ROOT}/sort_merge.cpp
-    ${SOURCES_ROOT}/sort_quick.cpp
-    ${SOURCES_ROOT}/sort_selection.cpp
+    ${SOURCES_ROOT}/sort/sort.cpp
+    ${SOURCES_ROOT}/sort/sort_bubble.cpp
+    ${SOURCES_ROOT}/sort/sort_insertion.cpp
+    ${SOURCES_ROOT}/sort/sort_merge.cpp
+    ${SOURCES_ROOT}/sort/sort_quick.cpp
+    ${SOURCES_ROOT}/sort/sort_selection.cpp
 
     ${UNITTEST_ROOT}/dataTest.cpp
     ${UNITTEST_ROOT}/gifTest.cpp

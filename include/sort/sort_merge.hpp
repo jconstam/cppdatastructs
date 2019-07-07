@@ -1,7 +1,7 @@
 #ifndef SORT_RADIX_HPP__
 #define SORT_RADIX_HPP__
 
-#include "sort.hpp"
+#include "sort/sort.hpp"
 
 class sort_merge : public sortBase
 {

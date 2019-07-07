@@ -14,13 +14,14 @@ set( SOURCES
 	${PROJECT_SOURCE_DIR}/data.cpp
 	${PROJECT_SOURCE_DIR}/gifData.cpp
 	${PROJECT_SOURCE_DIR}/htmlGen.cpp
-	${PROJECT_SOURCE_DIR}/sort.cpp
-	${PROJECT_SOURCE_DIR}/sort_collection.cpp
-	${PROJECT_SOURCE_DIR}/sort_bubble.cpp
-	${PROJECT_SOURCE_DIR}/sort_insertion.cpp
-	${PROJECT_SOURCE_DIR}/sort_merge.cpp
-	${PROJECT_SOURCE_DIR}/sort_quick.cpp
-	${PROJECT_SOURCE_DIR}/sort_selection.cpp
+
+	${PROJECT_SOURCE_DIR}/sort/sort.cpp
+	${PROJECT_SOURCE_DIR}/sort/sort_collection.cpp
+	${PROJECT_SOURCE_DIR}/sort/sort_bubble.cpp
+	${PROJECT_SOURCE_DIR}/sort/sort_insertion.cpp
+	${PROJECT_SOURCE_DIR}/sort/sort_merge.cpp
+	${PROJECT_SOURCE_DIR}/sort/sort_quick.cpp
+	${PROJECT_SOURCE_DIR}/sort/sort_selection.cpp
 )
 
 include_directories( ${PROJECT_NAME_LIBRARY} ${PROJECT_SOURCE_DIR}/../include ${PROJECT_SOURCE_DIR}/../gif )

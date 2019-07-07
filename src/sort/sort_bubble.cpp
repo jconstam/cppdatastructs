@@ -1,4 +1,4 @@
-#include "sort_bubble.hpp"
+#include "sort/sort_bubble.hpp"
 
 sort_bubble::sort_bubble( dataStor data ) : sortBase( data )
 {

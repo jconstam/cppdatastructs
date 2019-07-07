@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 
-#include "sort.hpp"
+#include "sort/sort.hpp"
 
 class sortCollection
 {

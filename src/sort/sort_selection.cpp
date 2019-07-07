@@ -1,4 +1,4 @@
-#include "sort_selection.hpp"
+#include "sort/sort_selection.hpp"
 
 sort_selection::sort_selection( dataStor data ) : sortBase( data )
 {

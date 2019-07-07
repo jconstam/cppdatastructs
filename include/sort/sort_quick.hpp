@@ -1,7 +1,7 @@
 #ifndef SORT_QUICK_HPP__
 #define SORT_QUICK_HPP__
 
-#include "sort.hpp"
+#include "sort/sort.hpp"
 
 class sort_quick : public sortBase
 {

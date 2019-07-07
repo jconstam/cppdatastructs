@@ -1,4 +1,4 @@
-#include "sort.hpp"
+#include "sort/sort.hpp"
 
 sortBase::sortBase( dataStor data )
 {

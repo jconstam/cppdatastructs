@@ -1,16 +1,13 @@
-#include "sort_collection.hpp"
+#include "sort/sort_collection.hpp"
 
 #include "data.hpp"
 
-#include "sort.hpp"
-#include "sort_bubble.hpp"
-#include "sort_selection.hpp"
-#include "sort_insertion.hpp"
-#include "sort_merge.hpp"
-#include "sort_quick.hpp"
-
-#include <iostream>
-using namespace std;
+#include "sort/sort.hpp"
+#include "sort/sort_bubble.hpp"
+#include "sort/sort_selection.hpp"
+#include "sort/sort_insertion.hpp"
+#include "sort/sort_merge.hpp"
+#include "sort/sort_quick.hpp"
 
 sortCollection::sortCollection( dataStor data )
 {

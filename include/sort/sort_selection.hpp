@@ -1,7 +1,7 @@
 #ifndef SORT_SELECTION_HPP__
 #define SORT_SELECTION_HPP__
 
-#include "sort.hpp"
+#include "sort/sort.hpp"
 
 class sort_selection : public sortBase
 {

@@ -1,6 +1,6 @@
 #include <cmath>
 
-#include "sort_merge.hpp"
+#include "sort/sort_merge.hpp"
 
 sort_merge::sort_merge( dataStor data ) : sortBase( data )
 {

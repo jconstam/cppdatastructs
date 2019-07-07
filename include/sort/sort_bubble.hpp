@@ -1,7 +1,7 @@
 #ifndef SORT_BUBBLE_HPP__
 #define SORT_BUBBLE_HPP__
 
-#include "sort.hpp"
+#include "sort/sort.hpp"
 
 class sort_bubble : public sortBase
 {

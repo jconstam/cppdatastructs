@@ -1,4 +1,4 @@
-#include "sort_quick.hpp"
+#include "sort/sort_quick.hpp"
 
 sort_quick::sort_quick( dataStor data ) : sortBase( data )
 {
