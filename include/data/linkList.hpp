@@ -48,7 +48,7 @@ class linkList
 
 		void add( T value )
 		{
-			linkListNode<T>* newNode = new linkListNode( value );
+			linkListNode<T>* newNode = new linkListNode<T>( value );
 			if( head == nullptr )
 			{
 				head = newNode;
