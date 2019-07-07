@@ -24,5 +24,9 @@ set( SOURCES
 	${PROJECT_SOURCE_DIR}/sort/sort_selection.cpp
 )
 
-include_directories( ${PROJECT_NAME_LIBRARY} ${PROJECT_SOURCE_DIR}/../include ${PROJECT_SOURCE_DIR}/../gif )
+include_directories( 
+	${PROJECT_NAME_LIBRARY} 
+	${PROJECT_SOURCE_DIR}/../include 
+	${PROJECT_SOURCE_DIR}/../gif 
+	)
 add_executable( ${PROJECT_NAME_LIBRARY} ${SOURCES} )

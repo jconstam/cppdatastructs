@@ -19,6 +19,7 @@ set( UNITTEST_SOURCES
     ${GIF_ROOT}/gifenc.c
     ${SOURCES_ROOT}/htmlGen.cpp
     ${SOURCES_ROOT}/gifData.cpp
+
     ${SOURCES_ROOT}/sort/dataStor.cpp
     ${SOURCES_ROOT}/sort/sort.cpp
     ${SOURCES_ROOT}/sort/sort_bubble.cpp
@@ -30,6 +31,7 @@ set( UNITTEST_SOURCES
     ${UNITTEST_ROOT}/dataTest.cpp
     ${UNITTEST_ROOT}/gifTest.cpp
     ${UNITTEST_ROOT}/htmlGenTest.cpp
+    ${UNITTEST_ROOT}/linkListTest.cpp
     ${UNITTEST_ROOT}/sortTest.cpp
 )
 
