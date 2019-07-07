@@ -1,4 +1,5 @@
 #include <fstream>
+#include <string>
 
 #include "gtest/gtest.h"
 
@@ -6,23 +7,160 @@
 
 using namespace std;
 
-TEST( HTMLGenTest, OpenCloseInvalidTag )
+class HTMLGenTest : public ::testing::Test 
+{
+	protected:
+
+		void SetUp( ) override
+		{
+		}
+
+		void TearDown( ) override
+		{
+
+		}
+
+		static void TestPrintedOutput( htmlGen& generator, string expected )
+		{
+			testing::internal::CaptureStdout( );
+
+			generator.printData( );
+
+			string output = testing::internal::GetCapturedStdout( );
+
+			EXPECT_STREQ( expected.c_str( ), output.c_str( ) );
+		}
+};
+
+TEST_F( HTMLGenTest, OpenCloseInvalidTag )
 {
 	htmlGen generator;
 
 	generator.openTag( HTML_TAG_COUNT );
 	generator.closeTag( HTML_TAG_COUNT );
 
-	testing::internal::CaptureStdout( );
-
-	generator.printData( );
-
-	string output = testing::internal::GetCapturedStdout( );
-
-	EXPECT_STREQ( "", output.c_str( ) );
+	TestPrintedOutput( generator, "" );
 }
 
-TEST( HTMLGenTest, OpenCloseTagBasic )
+TEST_F( HTMLGenTest, OpenCloseTagHTML )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_HTML );
+	generator.closeTag( HTML_TAG_HTML );
+
+	TestPrintedOutput( generator, "<html>\n</html>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagTitle )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_TITLE );
+	generator.closeTag( HTML_TAG_TITLE );
+
+	TestPrintedOutput( generator, "<title>\n</title>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagBody )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_BODY );
+	generator.closeTag( HTML_TAG_BODY );
+
+	TestPrintedOutput( generator, "<body>\n</body>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagDiv )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_DIV );
+	generator.closeTag( HTML_TAG_DIV );
+
+	TestPrintedOutput( generator, "<div>\n</div>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagH1 )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_H1 );
+	generator.closeTag( HTML_TAG_H1 );
+
+	TestPrintedOutput( generator, "<h1>\n</h1>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagH2 )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_H2 );
+	generator.closeTag( HTML_TAG_H2 );
+
+	TestPrintedOutput( generator, "<h2>\n</h2>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagImg )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_IMG );
+	generator.closeTag( HTML_TAG_IMG );
+
+	TestPrintedOutput( generator, "<img>\n</img>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagTable )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_TABLE );
+	generator.closeTag( HTML_TAG_TABLE );
+
+	TestPrintedOutput( generator, "<table>\n</table>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagTh )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_TH );
+	generator.closeTag( HTML_TAG_TH );
+
+	TestPrintedOutput( generator, "<th>\n</th>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagTr )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_TR );
+	generator.closeTag( HTML_TAG_TR );
+
+	TestPrintedOutput( generator, "<tr>\n</tr>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagTd )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_TD );
+	generator.closeTag( HTML_TAG_TD );
+
+	TestPrintedOutput( generator, "<td>\n</td>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagStyle )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_STYLE );
+	generator.closeTag( HTML_TAG_STYLE );
+
+	TestPrintedOutput( generator, "<style>\n</style>\n" );
+}
+TEST_F( HTMLGenTest, OpenCloseTagP )
+{
+	htmlGen generator;
+
+	generator.openTag( HTML_TAG_P );
+	generator.closeTag( HTML_TAG_P );
+
+	TestPrintedOutput( generator, "<p>\n</p>\n" );
+}
+
+TEST_F( HTMLGenTest, OpenCloseTagNested )
 {
 	htmlGen generator;
 
@@ -31,16 +169,12 @@ TEST( HTMLGenTest, OpenCloseTagBasic )
 	generator.closeTag( HTML_TAG_BODY );
 	generator.closeTag( HTML_TAG_HTML );
 
-	testing::internal::CaptureStdout( );
-
-	generator.printData( );
-
-	string output = testing::internal::GetCapturedStdout( );
-
-	EXPECT_STREQ( "<html>\n\t<body>\n\t</body>\n</html>\n", output.c_str( ) );
+	TestPrintedOutput( generator, "<html>\n\t<body>\n\t</body>\n</html>\n" );
 }
 
-TEST( HTMLGenTest, OpenCloseTagWithProperties )
+
+
+TEST_F( HTMLGenTest, OpenCloseTagWithProperties )
 {
 	htmlGen generator;
 
@@ -49,16 +183,10 @@ TEST( HTMLGenTest, OpenCloseTagWithProperties )
 	generator.closeTag( HTML_TAG_BODY );
 	generator.closeTag( HTML_TAG_HTML );
 
-	testing::internal::CaptureStdout( );
-\
-	generator.printData( );
-
-	string output = testing::internal::GetCapturedStdout( );
-
-	EXPECT_STREQ( "<html id=blah>\n\t<body id=blah2 test=one>\n\t</body>\n</html>\n", output.c_str( ) );
+	TestPrintedOutput( generator, "<html id=blah>\n\t<body id=blah2 test=one>\n\t</body>\n</html>\n" );
 }
 
-TEST( HTMLGenTest, OpenCloseTagNoNewLines )
+TEST_F( HTMLGenTest, OpenCloseTagNoNewLines )
 {
 	htmlGen generator;
 
@@ -67,73 +195,43 @@ TEST( HTMLGenTest, OpenCloseTagNoNewLines )
 	generator.closeTag( HTML_TAG_BODY, false );
 	generator.closeTag( HTML_TAG_HTML, false );
 
-	testing::internal::CaptureStdout( );
-
-	generator.printData( );
-
-	string output = testing::internal::GetCapturedStdout( );
-
-	EXPECT_STREQ( "<html>\t<body>\t</body></html>", output.c_str( ) );
+	TestPrintedOutput( generator, "<html>\t<body>\t</body></html>" );
 }
 
-TEST( HTMLGenTest, WriteTagWithValueSimple )
+TEST_F( HTMLGenTest, WriteTagWithValueSimple )
 {
 	htmlGen generator;
 
 	generator.writeTagWithValue( HTML_TAG_P, "blahblah" );
 
-	testing::internal::CaptureStdout( );
-
-	generator.printData( );
-
-	string output = testing::internal::GetCapturedStdout( );
-
-	EXPECT_STREQ( "<p>blahblah</p>\n", output.c_str( ) );
+	TestPrintedOutput( generator, "<p>blahblah</p>\n" );
 }
-TEST( HTMLGenTest, WriteTagWithValueProperties )
+TEST_F( HTMLGenTest, WriteTagWithValueProperties )
 {
 	htmlGen generator;
 
 	generator.writeTagWithValue( HTML_TAG_P, "blahblah", { "id=one", "test=two" } );
 
-	testing::internal::CaptureStdout( );
-
-	generator.printData( );
-
-	string output = testing::internal::GetCapturedStdout( );
-
-	EXPECT_STREQ( "<p id=one test=two>blahblah</p>\n", output.c_str( ) );
+	TestPrintedOutput( generator, "<p id=one test=two>blahblah</p>\n" );
 }
-TEST( HTMLGenTest, WriteTagWithValueAutoClose )
+TEST_F( HTMLGenTest, WriteTagWithValueAutoClose )
 {
 	htmlGen generator;
 
 	generator.writeTagWithValue( HTML_TAG_P, "blahblah", {}, true );
 
-	testing::internal::CaptureStdout( );
-
-	generator.printData( );
-
-	string output = testing::internal::GetCapturedStdout( );
-
-	EXPECT_STREQ( "<p />\n", output.c_str( ) );
+	TestPrintedOutput( generator, "<p />\n" );
 }
-TEST( HTMLGenTest, WriteTagWithValueAutoCloseNoNewLine )
+TEST_F( HTMLGenTest, WriteTagWithValueAutoCloseNoNewLine )
 {
 	htmlGen generator;
 
 	generator.writeTagWithValue( HTML_TAG_P, "blahblah", {}, true, false );
 
-	testing::internal::CaptureStdout( );
-
-	generator.printData( );
-
-	string output = testing::internal::GetCapturedStdout( );
-
-	EXPECT_STREQ( "<p />", output.c_str( ) );
+	TestPrintedOutput( generator, "<p />" );
 }
 
-TEST( HTMLGenTest, WriteSimple )
+TEST_F( HTMLGenTest, WriteSimple )
 {
 	htmlGen generator;
 
@@ -141,15 +239,9 @@ TEST( HTMLGenTest, WriteSimple )
 	generator.write( "blahblah" );
 	generator.closeTag( HTML_TAG_HTML );
 
-	testing::internal::CaptureStdout( );
-
-	generator.printData( );
-
-	string output = testing::internal::GetCapturedStdout( );
-
-	EXPECT_STREQ( "<html>\n\tblahblah\n</html>\n", output.c_str( ) );
+	TestPrintedOutput( generator, "<html>\n\tblahblah\n</html>\n" );
 }
-TEST( HTMLGenTest, WriteNoNewline )
+TEST_F( HTMLGenTest, WriteNoNewline )
 {
 	htmlGen generator;
 
@@ -157,15 +249,9 @@ TEST( HTMLGenTest, WriteNoNewline )
 	generator.write( "blahblah", false );
 	generator.closeTag( HTML_TAG_HTML );
 
-	testing::internal::CaptureStdout( );
-
-	generator.printData( );
-
-	string output = testing::internal::GetCapturedStdout( );
-
-	EXPECT_STREQ( "<html>\n\tblahblah</html>\n", output.c_str( ) );
+	TestPrintedOutput( generator, "<html>\n\tblahblah</html>\n" );
 }
-TEST( HTMLGenTest, WriteNoDepth )
+TEST_F( HTMLGenTest, WriteNoDepth )
 {
 	htmlGen generator;
 
@@ -173,16 +259,10 @@ TEST( HTMLGenTest, WriteNoDepth )
 	generator.write( "blahblah", true, false );
 	generator.closeTag( HTML_TAG_HTML );
 
-	testing::internal::CaptureStdout( );
-
-	generator.printData( );
-
-	string output = testing::internal::GetCapturedStdout( );
-
-	EXPECT_STREQ( "<html>\nblahblah\n</html>\n", output.c_str( ) );
+	TestPrintedOutput( generator, "<html>\nblahblah\n</html>\n" );
 }
 
-TEST( HTMLGenTest, WriteFile )
+TEST_F( HTMLGenTest, WriteFile )
 {
 	htmlGen generator;
 
