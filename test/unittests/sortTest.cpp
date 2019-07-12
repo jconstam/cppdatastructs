@@ -51,6 +51,13 @@ class SortTest : public ::testing::Test
 			struct stat buffer;
 			ASSERT_EQ( 0, stat( "test.gif", &( buffer ) ) );
 			ASSERT_EQ( 0, remove( "test.gif" ) );
+
+			dataStor secondStore;
+			secondStore.add( 1 );
+			secondStore.add( 0 );
+
+			sorter.changeData( secondStore );
+			EXPECT_EQ( false, sorter.isSorted( ) );
 		}
 };
 
