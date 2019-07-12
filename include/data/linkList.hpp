@@ -1,6 +1,19 @@
 #ifndef LINK_LIST_HPP__
 #define LINK_LIST_HPP__
 
+#include <exception>
+
+#include <iostream>
+using namespace std;
+
+struct linkListOutOfRangeException : public std::exception
+{
+	const char * what () const throw () 
+	{
+		return "Linked List Out of Bounds";
+	}
+};
+
 template<class T>
 class linkListNode
 {
@@ -66,30 +79,50 @@ class linkList
 
 		T remove( const int index )
 		{
-			linkListNode<T>* prev = getNode( index - 1 );
-			linkListNode<T>* curr = prev->getNext( );
-			if( !curr )
+			if( index == 0 )
 			{
-				outOfBoundsEx( );
-			}
-			T value = curr->getValue( );
-			linkListNode<T>* next = curr->getNext( );
+				if( head )
+				{
+					linkListNode<T>* lastHead = head;
+					head = head->getNext( );
 
-			if( next )
-			{
-				prev->setNext( next );
+					T value = lastHead->getValue( );
+					delete lastHead;
+
+					return value;
+				}
+				else
+				{
+					throw linkListOutOfRangeException( );
+				}
 			}
 			else
 			{
-				prev->setNext( nullptr );
+				linkListNode<T>* prev = getNode( index - 1 );
+				linkListNode<T>* curr = prev->getNext( );
+				if( !curr )
+				{
+					throw linkListOutOfRangeException( );
+				}
+				T value = curr->getValue( );
+				linkListNode<T>* next = curr->getNext( );
+
+				if( next )
+				{
+					prev->setNext( next );
+				}
+				else
+				{
+					prev->setNext( nullptr );
+				}
+
+				delete curr;
+
+				return value;
 			}
-
-			delete curr;
-
-			return value;
 		}
 
-		T& operator[]( const int index )
+		T get( const int index )
 		{
 			return getNode( index )->getValue( );
 		}
@@ -97,10 +130,6 @@ class linkList
 	private:
 		linkListNode<T>* head;
 
-		void outOfBoundsEx( )
-		{
-			throw "Linked List Out of Bounds";	
-		}
 		void deleteNode( linkListNode<T>* curr )
 		{
 			if( curr == nullptr )
@@ -122,14 +151,14 @@ class linkList
 			{
 				if( curr == nullptr )
 				{
-					outOfBoundsEx( );
+					throw linkListOutOfRangeException( );
 				}
 				curr = curr->getNext( );
 			}
 
 			if( curr == nullptr )
 			{
-				outOfBoundsEx( );
+				throw linkListOutOfRangeException( );
 			}
 
 			return curr;

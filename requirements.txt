@@ -1,1 +1,1 @@
-gcovr
+lcov_cobertura

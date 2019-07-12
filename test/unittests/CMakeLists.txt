@@ -35,7 +35,7 @@ set( UNITTEST_SOURCES
     ${UNITTEST_ROOT}/sortTest.cpp
 )
 
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage -fno-exceptions -fno-inline" )
+set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage -fno-inline" )
 
 set( UNITTEST_PROJECT_NAME "cppdatastructstest" )
 include_directories( ${UNITTEST_PROJECT_NAME} ${PROJECT_SOURCE_DIR}/../include ${GIF_ROOT} )
@@ -46,26 +46,25 @@ add_test( unittests
           ${UNITTEST_PROJECT_NAME} 
           --gtest_output=xml:${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_unittests.xml
           )
+add_test( unittest_coverage
+          lcov
+          --capture
+          --directory ${PROJECT_SOURCE_DIR}/..
+          --output-file ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_raw.info
+          )
+add_test( unittest_coverage_filter 
+          lcov 
+          --remove ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_raw.info "/usr/*" "*googletest*"
+          --output-file ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_filtered.info 
+          )
 add_test( unittest_coverage_html 
-          gcovr 
-          --root ${PROJECT_SOURCE_DIR}/.. 
-          --exclude .*test.*
-          --exclude-unreachable-branches 
-          --sort-percentage 
-          --print-summary 
-          --fail-under-line 100 
-          --fail-under-branch 100 
-          --html -o ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_coverage.html
-          ${COVERAGE_FLAGS}
+          genhtml
+          ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_filtered.info
+          --output-directory ${CMAKE_CURRENT_BINARY_DIR}
           )
 add_test( unittest_coverage_xml
-          gcovr
-          --root ${PROJECT_SOURCE_DIR}/.. 
-          --exclude .*test.* 
-          --exclude-unreachable-branches
-          --sort-percentage 
-          --print-summary 
-          --fail-under-line 100 
-          --fail-under-branch 100 
-          --xml -o ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_coverage.xml
+          python -m lcov_cobertura
+          ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_filtered.info
+          -b ${PROJECT_SOURCE_DIR}
+          -o ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}.xml
           )

@@ -26,7 +26,7 @@ steps:
   condition: succeededOrFailed()
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: build/cppdatastructs/test/unittests/cppdatastructstest_coverage.xml
+    summaryFileLocation: build/cppdatastructs/test/unittests/cppdatastructstest.xml
 - script: 'make -j run'
   displayName: 'Build and Run Main'
   timeoutInMinutes: 360
