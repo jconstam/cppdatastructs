@@ -4,11 +4,12 @@ pool:
   name: Hosted Ubuntu 1604
 
 steps:
-# Use Python 3.6
 - task: UsePythonVersion@0
   displayName: 'Set Environment to use Python 3.6'
   inputs:
     versionSpec: 3.6
+- script: 'sudo apt install lcov'
+  displayName: 'Install Ubuntu Packages'
 - script: |
    python -m pip install --upgrade pip 
    pip install -r requirements.txt
