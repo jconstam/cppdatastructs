@@ -54,7 +54,7 @@ add_test( unittest_coverage
           )
 add_test( unittest_coverage_filter 
           lcov 
-          --remove ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_raw.info "/usr/*" "*googletest*"
+          --remove ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_raw.info "/usr/*" "*googletest*" "*unittests*"
           --output-file ${CMAKE_CURRENT_BINARY_DIR}/${UNITTEST_PROJECT_NAME}_filtered.info 
           )
 add_test( unittest_coverage_html 
