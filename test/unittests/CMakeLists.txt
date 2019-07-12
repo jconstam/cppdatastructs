@@ -35,7 +35,7 @@ set( UNITTEST_SOURCES
     ${UNITTEST_ROOT}/sortTest.cpp
 )
 
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage -fno-inline" )
+set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage -fno-inline -O0" )
 
 set( UNITTEST_PROJECT_NAME "cppdatastructstest" )
 include_directories( ${UNITTEST_PROJECT_NAME} ${PROJECT_SOURCE_DIR}/../include ${GIF_ROOT} )
