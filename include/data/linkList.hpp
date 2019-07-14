@@ -35,12 +35,13 @@ class linkList
 		linkList( );
 		~linkList( );
 
-		void add( int value );
+		void append( int value );
+		void insert( int value, const int index );
 		int remove( const int index );
 		int get( const int index );
 
 	private:
-		linkListNode* head;
+		linkListNode* m_head;
 
 		void deleteNode( linkListNode* curr );
 		linkListNode* getNode( const int index );

@@ -26,23 +26,23 @@ int linkListNode::getValue( )
 
 linkList::linkList( )
 {
-	head = nullptr;
+	m_head = nullptr;
 }
 linkList::~linkList( )
 {
-	deleteNode( head );
+	deleteNode( m_head );
 }
 
-void linkList::add( int value )
+void linkList::append( int value )
 {
 	linkListNode* newNode = new linkListNode( value );
-	if( head == nullptr )
+	if( m_head == nullptr )
 	{
-		head = newNode;
+		m_head = newNode;
 	}
 	else
 	{
-		linkListNode* curr = head;
+		linkListNode* curr = m_head;
 		while( curr->getNext( ) )
 		{
 			curr = curr->getNext( );
@@ -51,14 +51,60 @@ void linkList::add( int value )
 	}
 }
 
+void linkList::insert( int value, const int index )
+{
+	linkListNode* newNode = new linkListNode( value );
+	linkListNode* currNode = m_head;
+	linkListNode* prevNode = nullptr;
+	if( !currNode )
+	{
+		if( index == 0 )
+		{
+			m_head = newNode;
+			return;
+		}
+		else
+		{
+			delete newNode;
+			throw linkListOutOfRangeException( );
+		}
+	}
+
+	for( int i = 0; i < index; i++ )
+	{
+		prevNode = currNode;
+		currNode = currNode->getNext( );
+		if( !currNode && i < index - 1 )
+		{
+			delete newNode;
+			throw linkListOutOfRangeException( );
+		}
+	}
+
+	if( currNode )
+	{
+		newNode->setNext( currNode );
+	}
+
+	if( prevNode )
+	{
+		prevNode->setNext( newNode );
+	}
+	else
+	{
+		m_head = newNode;
+	}
+
+}
+
 int linkList::remove( const int index )
 {
 	if( index == 0 )
 	{
-		if( head )
+		if( m_head )
 		{
-			linkListNode* lastHead = head;
-			head = head->getNext( );
+			linkListNode* lastHead = m_head;
+			m_head = m_head->getNext( );
 
 			int value = lastHead->getValue( );
 			delete lastHead;
@@ -117,7 +163,7 @@ void linkList::deleteNode( linkListNode* curr )
 
 linkListNode* linkList::getNode( const int index )
 {
-	linkListNode* curr = head;
+	linkListNode* curr = m_head;
 	for( int i = 0; i < index; i++ )
 	{
 		if( curr == nullptr )
