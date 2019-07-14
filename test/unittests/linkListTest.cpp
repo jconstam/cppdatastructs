@@ -4,7 +4,7 @@
 
 TEST( LinkListNodeTest, NodeInt )
 {
-	linkListNode<int> test( 5 );
+	linkListNode test( 5 );
 
 	EXPECT_EQ( 5, test.getValue( ) );
 	EXPECT_EQ( nullptr, test.getNext( ) );
@@ -14,7 +14,7 @@ TEST( LinkListNodeTest, NodeInt )
 	EXPECT_EQ( 10, test.getValue( ) );
 	EXPECT_EQ( nullptr, test.getNext( ) );
 
-	linkListNode<int> test2( 20, &( test ) );
+	linkListNode test2( 20, &( test ) );
 
 	EXPECT_EQ( 20, test2.getValue( ) );
 	EXPECT_EQ( &( test ), test2.getNext( ) );
@@ -24,38 +24,15 @@ TEST( LinkListNodeTest, NodeInt )
 	EXPECT_EQ( 10, test.getValue( ) );
 	EXPECT_EQ( &( test2 ), test.getNext( ) );	
 }
-TEST( LinkListNodeTest, NodeFloat )
-{
-	linkListNode<float> test( 5.0 );
-
-	EXPECT_FLOAT_EQ( 5.0, test.getValue( ) );
-	EXPECT_EQ( nullptr, test.getNext( ) );
-
-	test.setValue( 9.387 );
-
-	EXPECT_FLOAT_EQ( 9.387, test.getValue( ) );
-	EXPECT_EQ( nullptr, test.getNext( ) );
-
-	linkListNode<float> test2( 283.493, &( test ) );
-
-	EXPECT_FLOAT_EQ( 283.493, test2.getValue( ) );
-	EXPECT_EQ( &( test ), test2.getNext( ) );
-
-	test.setNext( &( test2 ) );
-
-	EXPECT_FLOAT_EQ( 9.387, test.getValue( ) );
-	EXPECT_EQ( &( test2 ), test.getNext( ) );	
-}
-
 
 class LinkListTest : public ::testing::Test 
 {
 	protected:
-		linkList<int>* intList;
+		linkList* intList;
 
 		void SetUp( ) override
 		{
-			intList = new linkList<int>( );
+			intList = new linkList( );
 		}
 
 		void TearDown( ) override
@@ -100,14 +77,14 @@ TEST_F( LinkListTest, ListAddRemove )
 }
 TEST_F( LinkListTest, ListCreateDelete )
 {
-	linkList<int>* test = new linkList<int>( );
+	linkList* test = new linkList( );
 	delete test;
 
-	test = new linkList<int>( );
+	test = new linkList( );
 	test->add( 5 );
 	delete test;
 
-	test = new linkList<int>( );
+	test = new linkList( );
 	test->add( 5 );
 	test->add( 5 );
 	test->add( 5 );

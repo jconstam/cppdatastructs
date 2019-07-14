@@ -14,11 +14,10 @@ struct linkListOutOfRangeException : public std::exception
 	}
 };
 
-template<class T>
 class linkListNode
 {
 	public:
-		linkListNode( T value, linkListNode* next = nullptr )
+		linkListNode( int value, linkListNode* next = nullptr )
 		{
 			m_value = value;
 			setNext( next );
@@ -28,7 +27,7 @@ class linkListNode
 		{
 			m_next = next;
 		}
-		void setValue( T value )
+		void setValue( int value )
 		{
 			m_value = value;
 		}
@@ -37,16 +36,15 @@ class linkListNode
 		{
 			return m_next;
 		}
-		T getValue( )
+		int getValue( )
 		{
 			return m_value;
 		}
 	private:
-		T m_value;
+		int m_value;
 		linkListNode* m_next;
 };
 
-template<typename T>
 class linkList
 {
 	public:
@@ -59,16 +57,16 @@ class linkList
 			deleteNode( head );
 		}
 
-		void add( T value )
+		void add( int value )
 		{
-			linkListNode<T>* newNode = new linkListNode<T>( value );
+			linkListNode* newNode = new linkListNode( value );
 			if( head == nullptr )
 			{
 				head = newNode;
 			}
 			else
 			{
-				linkListNode<T>* curr = head;
+				linkListNode* curr = head;
 				while( curr->getNext( ) )
 				{
 					curr = curr->getNext( );
@@ -77,16 +75,16 @@ class linkList
 			}
 		}
 
-		T remove( const int index )
+		int remove( const int index )
 		{
 			if( index == 0 )
 			{
 				if( head )
 				{
-					linkListNode<T>* lastHead = head;
+					linkListNode* lastHead = head;
 					head = head->getNext( );
 
-					T value = lastHead->getValue( );
+					int value = lastHead->getValue( );
 					delete lastHead;
 
 					return value;
@@ -98,14 +96,14 @@ class linkList
 			}
 			else
 			{
-				linkListNode<T>* prev = getNode( index - 1 );
-				linkListNode<T>* curr = prev->getNext( );
+				linkListNode* prev = getNode( index - 1 );
+				linkListNode* curr = prev->getNext( );
 				if( !curr )
 				{
 					throw linkListOutOfRangeException( );
 				}
-				T value = curr->getValue( );
-				linkListNode<T>* next = curr->getNext( );
+				int value = curr->getValue( );
+				linkListNode* next = curr->getNext( );
 
 				if( next )
 				{
@@ -122,15 +120,15 @@ class linkList
 			}
 		}
 
-		T get( const int index )
+		int get( const int index )
 		{
 			return getNode( index )->getValue( );
 		}
 
 	private:
-		linkListNode<T>* head;
+		linkListNode* head;
 
-		void deleteNode( linkListNode<T>* curr )
+		void deleteNode( linkListNode* curr )
 		{
 			if( curr == nullptr )
 			{
@@ -144,9 +142,9 @@ class linkList
 			delete curr;
 		}
 
-		linkListNode<T>* getNode( const int index )
+		linkListNode* getNode( const int index )
 		{
-			linkListNode<T>* curr = head;
+			linkListNode* curr = head;
 			for( int i = 0; i < index; i++ )
 			{
 				if( curr == nullptr )
