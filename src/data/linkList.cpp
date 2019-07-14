@@ -1,6 +1,6 @@
 #include "data/linkList.hpp"
 
-linkListNode::linkListNode( int value, linkListNode* next )
+linkListNode::linkListNode( const int value, linkListNode* next )
 {
 	m_value = value;
 	setNext( next );
@@ -10,7 +10,7 @@ void linkListNode::setNext( linkListNode* next )
 {
 	m_next = next;
 }
-void linkListNode::setValue( int value )
+void linkListNode::setValue( const int value )
 {
 	m_value = value;
 }
@@ -27,13 +27,14 @@ int linkListNode::getValue( )
 linkList::linkList( )
 {
 	m_head = nullptr;
+	m_size = 0;
 }
 linkList::~linkList( )
 {
 	deleteNode( m_head );
 }
 
-void linkList::append( int value )
+void linkList::append( const int value )
 {
 	linkListNode* newNode = new linkListNode( value );
 	if( m_head == nullptr )
@@ -49,16 +50,20 @@ void linkList::append( int value )
 		}
 		curr->setNext( newNode );
 	}
+
+	m_size++;
 }
 
-void linkList::prepend( int value )
+void linkList::prepend( const int value )
 {
 	linkListNode* newNode = new linkListNode( value );
 	newNode->setNext( m_head );
 	m_head = newNode;
+
+	m_size++;
 }
 
-void linkList::insert( int value, const int index )
+void linkList::insert( const int value, const int index )
 {
 	linkListNode* newNode = new linkListNode( value );
 	linkListNode* currNode = m_head;
@@ -68,6 +73,7 @@ void linkList::insert( int value, const int index )
 		if( index == 0 )
 		{
 			m_head = newNode;
+			m_size++;
 			return;
 		}
 		else
@@ -102,6 +108,7 @@ void linkList::insert( int value, const int index )
 		m_head = newNode;
 	}
 
+	m_size++;
 }
 
 int linkList::remove( const int index )
@@ -115,6 +122,8 @@ int linkList::remove( const int index )
 
 			int value = lastHead->getValue( );
 			delete lastHead;
+
+			m_size--;
 
 			return value;
 		}
@@ -145,6 +154,8 @@ int linkList::remove( const int index )
 
 		delete curr;
 
+		m_size--;
+
 		return value;
 	}
 }
@@ -152,6 +163,11 @@ int linkList::remove( const int index )
 int linkList::get( const int index )
 {
 	return getNode( index )->getValue( );
+}
+
+int linkList::getSize( )
+{
+	return m_size;
 }
 
 void linkList::deleteNode( linkListNode* curr )

@@ -14,10 +14,10 @@ struct linkListOutOfRangeException : public std::exception
 class linkListNode
 {
 	public:
-		linkListNode( int value, linkListNode* next = nullptr );
+		linkListNode( const int value, linkListNode* next = nullptr );
 
 		void setNext( linkListNode* next );
-		void setValue( int value );
+		void setValue( const int value );
 
 		linkListNode* getNext( );
 		int getValue( );
@@ -32,14 +32,17 @@ class linkList
 		linkList( );
 		~linkList( );
 
-		void append( int value );
-		void prepend( int value );
-		void insert( int value, const int index );
+		void append( const int value );
+		void prepend( const int value );
+		void insert( const int value, const int index );
 		int remove( const int index );
 		int get( const int index );
 
+		int getSize( );
+
 	private:
 		linkListNode* m_head;
+		int m_size;
 
 		void deleteNode( linkListNode* curr );
 		linkListNode* getNode( const int index );
