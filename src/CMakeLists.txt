@@ -15,6 +15,7 @@ set( SOURCES
 	${PROJECT_SOURCE_DIR}/htmlGen.cpp
 
 	${PROJECT_SOURCE_DIR}/data/linkList.cpp
+	${PROJECT_SOURCE_DIR}/data/queue.cpp
 
 	${PROJECT_SOURCE_DIR}/sort/dataStor.cpp
 	${PROJECT_SOURCE_DIR}/sort/sort.cpp

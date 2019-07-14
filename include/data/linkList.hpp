@@ -3,9 +3,6 @@
 
 #include <exception>
 
-#include <iostream>
-using namespace std;
-
 struct linkListOutOfRangeException : public std::exception
 {
 	const char * what () const throw () 

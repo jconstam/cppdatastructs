@@ -21,6 +21,7 @@ set( UNITTEST_SOURCES
     ${SOURCES_ROOT}/gifData.cpp
 
     ${SOURCES_ROOT}/data/linkList.cpp
+    ${SOURCES_ROOT}/data/queue.cpp
 
     ${SOURCES_ROOT}/sort/dataStor.cpp
     ${SOURCES_ROOT}/sort/sort.cpp
@@ -34,6 +35,7 @@ set( UNITTEST_SOURCES
     ${UNITTEST_ROOT}/gifTest.cpp
     ${UNITTEST_ROOT}/htmlGenTest.cpp
     ${UNITTEST_ROOT}/linkListTest.cpp
+    ${UNITTEST_ROOT}/queueTest.cpp
     ${UNITTEST_ROOT}/sortTest.cpp
 )
 
