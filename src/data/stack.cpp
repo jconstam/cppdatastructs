@@ -17,14 +17,17 @@ void stack::push( const int value )
 
 int stack::pop( )
 {
-	int result;
-	try
+	if( m_list->getSize( ) == 0 )
 	{
-		result = m_list->remove( 0 );
-		return result;
+		throw stackEmptyException( );	
 	}
-	catch( linkListOutOfRangeException& ex )
+	else
 	{
-		throw stackEmptyException( );
+		return m_list->remove( 0 );
 	}
+}
+
+int stack::getSize( )
+{
+	return m_list->getSize( );
 }

@@ -20,11 +20,15 @@ class StackTest : public ::testing::Test
 
 TEST_F( StackTest, Stack )
 {
+	EXPECT_EQ( 0, testStack->getSize( ) );
+	
 	testStack->push( 0 );
 	testStack->push( 1 );
 	testStack->push( 2 );
 	testStack->push( 3 );
 	testStack->push( 4 );
+
+	EXPECT_EQ( 5, testStack->getSize( ) );
 
 	EXPECT_EQ( 4, testStack->pop( ) );
 	EXPECT_EQ( 3, testStack->pop( ) );
@@ -32,6 +36,8 @@ TEST_F( StackTest, Stack )
 	EXPECT_EQ( 1, testStack->pop( ) );
 	EXPECT_EQ( 0, testStack->pop( ) );
 	ASSERT_THROW( testStack->pop( ), stackEmptyException );
+
+	EXPECT_EQ( 0, testStack->getSize( ) );
 }
 TEST_F( StackTest, EmptyException )
 {
