@@ -1,21 +1,21 @@
-#include "data/queue.hpp"
+#include "data/stack.hpp"
 
-queue::queue( )
+stack::stack( )
 {
 	m_list = new linkList( );
 }
 
-queue::~queue( )
+stack::~stack( )
 {
 	delete m_list;
 }
 
-void queue::push( const int value )
+void stack::push( const int value )
 {
 	m_list->prepend( value );
 }
 
-int queue::pop( )
+int stack::pop( )
 {
 	int result;
 	try
@@ -25,6 +25,6 @@ int queue::pop( )
 	}
 	catch( linkListOutOfRangeException& ex )
 	{
-		throw queueEmptyException( );
+		throw stackEmptyException( );
 	}
 }

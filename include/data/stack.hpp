@@ -1,23 +1,23 @@
-#ifndef QUEUE_HPP__
-#define QUEUE_HPP__
+#ifndef STACK_HPP__
+#define STACK_HPP__
 
 #include "data/linkList.hpp"
 
 #include <exception>
 
-struct queueEmptyException : public std::exception
+struct stackEmptyException : public std::exception
 {
 	const char * what () const throw () 
 	{
-		return "Queue Empty";
+		return "Stack Empty";
 	}
 };
 
-class queue
+class stack
 {
 	public:
-		queue( );
-		~queue( );
+		stack( );
+		~stack( );
 
 		void push( const int value );
 		int pop( );
