@@ -51,6 +51,13 @@ void linkList::append( int value )
 	}
 }
 
+void linkList::prepend( int value )
+{
+	linkListNode* newNode = new linkListNode( value );
+	newNode->setNext( m_head );
+	m_head = newNode;
+}
+
 void linkList::insert( int value, const int index )
 {
 	linkListNode* newNode = new linkListNode( value );

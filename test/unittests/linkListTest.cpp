@@ -77,6 +77,7 @@ TEST_F( LinkListTest, ListAddRemove )
 }
 TEST_F( LinkListTest, ListInsert )
 {
+	ASSERT_THROW( intList->get( 0 ), linkListOutOfRangeException );
 	ASSERT_THROW( intList->insert( 5, 1 ), linkListOutOfRangeException );
 
 	intList->insert( 5, 0 );
@@ -91,6 +92,25 @@ TEST_F( LinkListTest, ListInsert )
 	EXPECT_EQ( 15, intList->get( 1 ) );
 	EXPECT_EQ( 5, intList->get( 2 ) );
 	ASSERT_THROW( intList->insert( 5, 4 ), linkListOutOfRangeException );
+}
+TEST_F( LinkListTest, ListPrepend )
+{
+	ASSERT_THROW( intList->get( 0 ), linkListOutOfRangeException );
+
+	intList->prepend( 5 );
+	EXPECT_EQ( 5, intList->get( 0 ) );
+	ASSERT_THROW( intList->get( 1 ), linkListOutOfRangeException );
+
+	intList->prepend( 10 );
+	EXPECT_EQ( 10, intList->get( 0 ) );
+	EXPECT_EQ( 5, intList->get( 1 ) );
+	ASSERT_THROW( intList->get( 2 ), linkListOutOfRangeException );
+
+	intList->prepend( 15 );
+	EXPECT_EQ( 15, intList->get( 0 ) );
+	EXPECT_EQ( 10, intList->get( 1 ) );
+	EXPECT_EQ( 5, intList->get( 2 ) );
+	ASSERT_THROW( intList->get( 3 ), linkListOutOfRangeException );
 }
 TEST_F( LinkListTest, ListCreateDelete )
 {

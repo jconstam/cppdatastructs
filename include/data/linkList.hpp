@@ -36,6 +36,7 @@ class linkList
 		~linkList( );
 
 		void append( int value );
+		void prepend( int value );
 		void insert( int value, const int index );
 		int remove( const int index );
 		int get( const int index );
