@@ -14,6 +14,8 @@ set( SOURCES
 	${PROJECT_SOURCE_DIR}/gifData.cpp
 	${PROJECT_SOURCE_DIR}/htmlGen.cpp
 
+	${PROJECT_SOURCE_DIR}/data/linkList.cpp
+
 	${PROJECT_SOURCE_DIR}/sort/dataStor.cpp
 	${PROJECT_SOURCE_DIR}/sort/sort.cpp
 	${PROJECT_SOURCE_DIR}/sort/sort_collection.cpp

@@ -20,6 +20,8 @@ set( UNITTEST_SOURCES
     ${SOURCES_ROOT}/htmlGen.cpp
     ${SOURCES_ROOT}/gifData.cpp
 
+    ${SOURCES_ROOT}/data/linkList.cpp
+
     ${SOURCES_ROOT}/sort/dataStor.cpp
     ${SOURCES_ROOT}/sort/sort.cpp
     ${SOURCES_ROOT}/sort/sort_bubble.cpp
