@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-#include "gifenc.h"
+#include "gif/gifenc.h"
 
 class gifData
 {

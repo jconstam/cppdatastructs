@@ -7,6 +7,5 @@ set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror" )
 
 set( SOURCES_ROOT ${PROJECT_SOURCE_DIR}/../src )
 set( UNITTEST_ROOT ${PROJECT_SOURCE_DIR}/unittests )
-set( GIF_ROOT ${PROJECT_SOURCE_DIR}/../gif )
 
 add_subdirectory( ${UNITTEST_ROOT} )

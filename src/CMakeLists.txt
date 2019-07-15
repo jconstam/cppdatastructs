@@ -8,7 +8,7 @@ set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror ${BIG_FLAGS}" )
 project( ${PROJECT_NAME_LIBRARY} ) 
 
 set( SOURCES 
-	${PROJECT_SOURCE_DIR}/../gif/gifenc.c
+	${PROJECT_SOURCE_DIR}/gif/gifenc.c
 
 	${PROJECT_SOURCE_DIR}/main.cpp
 	${PROJECT_SOURCE_DIR}/gifData.cpp

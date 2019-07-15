@@ -5,7 +5,7 @@
 #include <cmath>
 #include <map>
 
-#include "gifenc.h"
+#include "gif/gifenc.h"
 
 #include "sort/dataStor.hpp"
 #include "sort/sort_collection.hpp"

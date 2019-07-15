@@ -16,10 +16,11 @@ set( gtest_force_shared_crt ON CACHE BOOL "" FORCE )
 add_subdirectory( ${CMAKE_CURRENT_BINARY_DIR}/googletest-src ${CMAKE_CURRENT_BINARY_DIR}/googletest-build EXCLUDE_FROM_ALL )
 
 set( UNITTEST_SOURCES
-    ${GIF_ROOT}/gifenc.c
     ${SOURCES_ROOT}/htmlGen.cpp
     ${SOURCES_ROOT}/gifData.cpp
 
+    ${SOURCES_ROOT}/gif/gifenc.c
+    
     ${SOURCES_ROOT}/data/linkList.cpp
     ${SOURCES_ROOT}/data/stack.cpp
 
