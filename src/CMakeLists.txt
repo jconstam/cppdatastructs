@@ -14,6 +14,7 @@ set( SOURCES
 	${PROJECT_SOURCE_DIR}/gifData.cpp
 	${PROJECT_SOURCE_DIR}/htmlGen.cpp
 
+	${PROJECT_SOURCE_DIR}/data/heap.cpp
 	${PROJECT_SOURCE_DIR}/data/linkList.cpp
 	${PROJECT_SOURCE_DIR}/data/queue.cpp
 	${PROJECT_SOURCE_DIR}/data/stack.cpp

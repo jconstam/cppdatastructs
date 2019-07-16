@@ -21,6 +21,7 @@ set( UNITTEST_SOURCES
 
     ${SOURCES_ROOT}/gif/gifenc.c
     
+    ${SOURCES_ROOT}/data/heap.cpp
     ${SOURCES_ROOT}/data/linkList.cpp
     ${SOURCES_ROOT}/data/stack.cpp
 
@@ -34,6 +35,7 @@ set( UNITTEST_SOURCES
 
     ${UNITTEST_ROOT}/dataTest.cpp
     ${UNITTEST_ROOT}/gifTest.cpp
+    ${UNITTEST_ROOT}/heapTest.cpp
     ${UNITTEST_ROOT}/htmlGenTest.cpp
     ${UNITTEST_ROOT}/linkListTest.cpp
     ${UNITTEST_ROOT}/sortTest.cpp
